@@ -1,0 +1,15 @@
+# Robot Framework core
+robotframework>=7.0
+robotframework-browser>=18.0
+robotframework-faker>=5.0
+robotframework-databaselibrary>=1.4
+robotframework-requests>=0.9
+
+# Discord notifications
+# requests>=2.28.0
+
+# Database (SQL Server) - POTREBNE pro DB testy
+# pyodbc>=5.0
+
+# Debug (optional - odkomentovat pro lokalni vyvoj)
+# robotframework-debug

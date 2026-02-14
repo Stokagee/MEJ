@@ -1,0 +1,37 @@
+# Git
+.git/
+.gitignore
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# Test outputs (will be generated in container)
+results/
+output/
+*.png
+log.html
+output.xml
+report.html
+playwright-log.txt
+
+# Documentation
+docs/
+*.md
+CLAUDE.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Other
+.claude/
+*.zip

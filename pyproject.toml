@@ -1,0 +1,2 @@
+[tool.rfbrowser]
+args = ["--user-data-dir=/tmp/browser-${RANDOM}"]

@@ -1,0 +1,63 @@
+# === Environment & Secrets (NIKDY NECOMMITOVAT!) ===
+.env
+.env.local
+.env.*.local
+devops.txt
+
+# === Test outputs ===
+browser/
+results/
+outputs/
+playwright-log.txt
+log.html
+output.xml
+report.html
+*.png
+
+# === Python ===
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# === IDE ===
+.idea/
+.vscode/
+*.swp
+
+# === OS ===
+.DS_Store
+Thumbs.db
+nul
+
+# === Claude Code ===
+.claude/settings.local.json
+.claude/settings.json
+resources/libraries/ImageComparisonLibrary/temp_demo/baseline.png
+resources/libraries/ImageComparisonLibrary/temp_demo/current.png
+resources/libraries/ImageComparisonLibrary/temp_timestamp_demo/baseline_timestamp.png
+resources/libraries/ImageComparisonLibrary/temp_timestamp_demo/current_timestamp.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/debug_masks/added_pixels_mask.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/debug_masks/binary_mask.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/debug_masks/removed_pixels_mask.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/diagnostic/mask_added.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/diagnostic/mask_binary.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/diagnostic/mask_removed.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/directional_simple/diff_20251121_091736_898891.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/pixel_tolerance_fix/diff_20251121_083149_023887.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/pixel_tolerance_fix/diff_20251121_083149_659784.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/quick_tests/diff_20251120_153711_273154.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/quick_tests/diff_20251120_153711_458354.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/reports/visual_comparison_20251120_150618.html
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/reports/visual_comparison_20251120_150653.html
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/robot_repro/diff_20251121_085616_722090.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/robot_repro/diff_20251121_091029_339350.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/robot_repro/diff_20251121_092306_403225.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/synthetic/comparison_baseline_vs_shifted.png
+resources/libraries/ImageComparisonLibrary/tests/debug/outputs/synthetic/synthetic_shifted_input.png
+.venv/
+docs/RF_Validation_CheatSheet.md
+docs/Journey_Form_Validations.md
+.claude/settings.json
+nul

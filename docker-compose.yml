@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  rf-tests:
+    build: .
+    container_name: mej-rf-tests
+    environment:
+      # Pass environment variables from .env file or host
+      - MEJ_URL=${MEJ_URL:-https://shared-testing-2.continero.com/}
+      - MEJ_API_URL=${MEJ_API_URL:-https://shared-testing-2.continero.com}
+      - MEJ_HEADLESS=${MEJ_HEADLESS:-True}
+      - MEJ_ADMIN_EMAIL=${MEJ_ADMIN_EMAIL}
+      - MEJ_ADMIN_PASSWORD=${MEJ_ADMIN_PASSWORD}
+      - MEJ_DRIVER_EMAIL=${MEJ_DRIVER_EMAIL}
+      - MEJ_DRIVER_PASSWORD=${MEJ_DRIVER_PASSWORD}
+      - MEJ_COMPANY_EMAIL=${MEJ_COMPANY_EMAIL}
+      - MEJ_COMPANY_PASSWORD=${MEJ_COMPANY_PASSWORD}
+      - MEJ_DB_HOST=${MEJ_DB_HOST}
+      - MEJ_DB_PORT=${MEJ_DB_PORT}
+      - MEJ_DB_NAME=${MEJ_DB_NAME}
+      - MEJ_DB_USER=${MEJ_DB_USER}
+      - MEJ_DB_PASSWORD=${MEJ_DB_PASSWORD}
+    volumes:
+      # Mount results folder to access test reports
+      - ./results:/app/results
+    # Run in headless mode for CI/CD
+    command: robot --outputdir results --exclude wip tests/
