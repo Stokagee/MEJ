@@ -26,6 +26,6 @@ Non-existent Product
 
 
 
-    Log To Console    \n=======\n \n========
-    Log To Console     \n=======\n \n========
+    Log    \n=======\n \n========    console=${LOG_TO_CONSOLE}
+    Log    \n=======\n \n========    console=${LOG_TO_CONSOLE}
 

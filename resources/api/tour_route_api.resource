@@ -16,7 +16,7 @@ Get All Accepted Tour Routes From API
     [Arguments]    ${session_alias}=tour_route_session
     ${response}=    RequestsLibrary.GET On Session    ${session_alias}    /api/TourRoute/accepted
     Should Be Equal As Integers    ${response.status_code}    200
-    Log To Console    \n--->API Response: ${response.json()}
+    Log    \n--->API Response: ${response.json()}    console=${LOG_TO_CONSOLE}
     RETURN    ${response.json()}
 
 Verify Tour Route Exists In API
@@ -31,7 +31,7 @@ Verify Tour Route Exists In API
     FOR    ${item}    IN    @{data}
         IF    '${item["orderId"]}' == '${tour_route_id}'
             VAR    ${found}    ${TRUE}
-            Log To Console    \n--->Found tour route with ID: ${tour_route_id} in API response.
+            Log    \n--->Found tour route with ID: ${tour_route_id} in API response.    console=${LOG_TO_CONSOLE}
             BREAK
         END
     END

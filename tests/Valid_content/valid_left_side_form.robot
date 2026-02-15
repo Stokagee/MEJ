@@ -15,7 +15,7 @@ Open And Validate Type Of Journey After Filling Locations
     Save Form Left Section
     Sleep    2
     ${type_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_TYPE_TEXTAREA}    get Type Of Journey value after saving form
-    Log To Console    Value before saving: ${type_for_verify}
+    Log    Value before saving: ${type_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${type_after_save}    ${type_for_verify}    msg=Type Of Journey value changed after saving form!
 
 Open And Validate Date After Filling Locations
@@ -23,9 +23,9 @@ Open And Validate Date After Filling Locations
     [Tags]    ui    journey    positive    p2    date    date_validation
     [Setup]    Navigate To Journeys Page Without Opening Form
     ${date_for_verify}=    Get Element Text    ${JOURNEYS_FORM_DATE_PICKER_TEXTAREA}    get Date value after filling form
-    Log To Console    Date value after filling: ${date_for_verify}
+    Log    Date value after filling: ${date_for_verify}    console=${LOG_TO_CONSOLE}
     ${today_day}=    Get Current Date    result_format=%d %b %Y
-    ${today_day_for_verify}=    Evaluate    '${today_day}'.lstrip("0")
+    VAR    ${today_day_for_verify}    ${{str($today_day).lstrip("0")}}
     Should Be Equal    ${date_for_verify}    ${today_day_for_verify}    msg=Date value in form is not today's date!
     [Teardown]    Close Browser
 
@@ -38,7 +38,7 @@ Open And Validate Passengers Count
     Save Form Left Section
     Sleep    2
     ${passengers_count_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_PASSENGERS_COUNT_TEXTAREA}    get Passengers Count value after saving form
-    Log To Console    Value before saving: ${passengers_count_for_verify}
+    Log    Value before saving: ${passengers_count_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${passengers_count_after_save}    ${passengers_count_for_verify}    msg=Passengers Count value changed after saving form!
     [Teardown]    Close Browser
 
@@ -51,7 +51,7 @@ Open And Validate Car Type
     Save Form Left Section
     Sleep    2
     ${car_type_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_CAR_TYPE_TEXTAREA}     get Car Type value after saving form
-    Log To Console    Value before saving: ${car_type_for_verify}
+    Log    Value before saving: ${car_type_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${car_type_after_save}    ${car_type_for_verify}    msg=Car Type value changed after saving form!
     [Teardown]    Close Browser
 
@@ -66,7 +66,7 @@ Open And Validate Note For Driver
     Save Form Left Section
     Sleep    2
     ${note_for_driver_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_NOTE_FOR_DRIVER_TEXTAREA}    get Note For Driver value after saving form
-    Log To Console    Value before saving: ${note_for_driver_for_verify}
+    Log    Value before saving: ${note_for_driver_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${note_for_driver_after_save}    ${note_for_driver_for_verify}    msg=Note For Driver value changed after saving form!
     [Teardown]    Close Browser
 
@@ -81,7 +81,7 @@ Open And Validate Note For Operator
     Save Form Left Section
     Sleep    2
     ${note_for_operator_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_OPERATOR_NOTE_TEXTAREA}    get Note For Operator value after saving form
-    Log To Console    Value before saving: ${note_for_operator_for_verify}
+    Log    Value before saving: ${note_for_operator_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${note_for_operator_after_save}    ${note_for_operator_for_verify}    msg=Note For Operator value changed after saving form!
     [Teardown]    Close Browser
 
@@ -95,7 +95,7 @@ Open And Validate Passengers First Name
     Save Form Left Section
     Sleep    2
     ${first_name_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_PASSENGERS_FIRST_NAME_TEXTAREA}    get Passengers First Name value after saving form
-    Log To Console    Value before saving: ${first_name_for_verify}
+    Log    Value before saving: ${first_name_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${first_name_after_save}    ${first_name_for_verify}    msg=Passengers First Name value changed after saving form!
     [Teardown]    Close Browser
 
@@ -109,7 +109,7 @@ Open And Validate Passengers Last Name
     Save Form Left Section
     Sleep    2
     ${last_name_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_PASSENGERS_LAST_NAME_TEXTAREA}    get Passengers Last Name value after saving form
-    Log To Console    Value before saving: ${last_name_for_verify}
+    Log    Value before saving: ${last_name_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${last_name_after_save}    ${last_name_for_verify}    msg=Passengers Last Name value changed after saving form!
     [Teardown]    Close Browser
 
@@ -123,7 +123,7 @@ Open And Validate Passengers Email
     Save Form Left Section
     Sleep    2
     ${email_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_PASSENGERS_EMAIL_TEXTAREA}    get Passengers Email value after saving form
-    Log To Console    Value before saving: ${email_for_verify}
+    Log    Value before saving: ${email_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${email_after_save}    ${email_for_verify}    msg=Passengers Email value changed after saving form!
     [Teardown]    Close Browser
 
@@ -137,7 +137,7 @@ Open And Validate Passengers Phone
     Save Form Left Section
     Sleep    2
     ${phone_after_save}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_PASSENGERS_PHONE_TEXTAREA}    get Passengers Phone value after saving form
-    Log To Console    Value before saving: ${phone_for_verify}
+    Log    Value before saving: ${phone_for_verify}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${phone_after_save}    ${phone_for_verify}    msg=Passengers Phone value changed after saving form!
     [Teardown]    Close Browser
 
@@ -150,6 +150,6 @@ Open And Validate Whatsapp Supported Checkbox
     Save Form Left Section
     Sleep    2
     ${checkbox_state}=    Get Element Text  ${JOURNEYS_FORM_REQUEST_PASSENGERS_WHATSAPP_TEXTAREA}    aria-checked
-    Log To Console    Whatsapp Supported Checkbox state after saving form: ${checkbox_state}
+    Log    Whatsapp Supported Checkbox state after saving form: ${checkbox_state}    console=${LOG_TO_CONSOLE}
     Should Be Equal    ${checkbox_state}    WhatsApp supported    msg=Whatsapp Supported Checkbox is not checked after saving form!
     [Teardown]    Close Browser

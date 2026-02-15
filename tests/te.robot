@@ -22,7 +22,7 @@ Create New Invoice
     Select Driver In Invoice Form
     Save Invoice Form
     Verify Invoice Created In UI
-    Log To Console    \n=====\nCreating invoice with Order Name: ${order_name}, Product Name: ${product_name}\n=====
+    Log    \n=====\nCreating invoice with Order Name: ${order_name}, Product Name: ${product_name}\n=====    console=${LOG_TO_CONSOLE}
     Create Database Session
     Get Invoice By Order Name From DB    ${order_name}
     [Teardown]    Run Keywords

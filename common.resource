@@ -60,7 +60,7 @@ Initialize Browser Session
     [Arguments]    ${BROWSER}    ${HEADLESS}    ${URL}    ${WIDTH}    ${HEIGHT}
     New Browser    ${BROWSER}    headless=${HEADLESS}
     ${browser_ids}=    Get Browser Ids    ACTIVE  # ← ZMĚNA: vezmi jen aktivní
-    ${browser_id}=     Set Variable    ${browser_ids}[0]   
+    VAR    ${browser_id}    ${browser_ids}[0]   
     New Context    ignoreHTTPSErrors=True    viewport={'width':${WIDTH},'height':${HEIGHT}}
     ${context_ids}=    Get Context Ids    ACTIVE  # ← ZMĚNA: pro konkrétní browser
     ${context_id}=     Get From List    ${context_ids}    -1  
@@ -80,7 +80,7 @@ Click Element
         Click    ${selector}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed when, '${context_name}' --> | selector='${selector}' | ERROR: ${err}
+        VAR    ${msg}    Failed when, '${context_name}' --> | selector='${selector}' | ERROR: ${err}
         Fail    ${msg}
     END
 
@@ -97,14 +97,14 @@ Fill Field
         Fill Text    ${locator}    ${text}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed when, '${context_name}' --> | locator='${locator}' | ERROR: ${err}
+        VAR    ${msg}    Failed when, '${context_name}' --> | locator='${locator}' | ERROR: ${err}
         Fail    ${msg}
     END
 
 Get Element Text
     [Documentation]    Gets text from an element using the specified locator with optional context name for better error messages
     [Arguments]    ${locator}    ${context_name}=${EMPTY}
-    ${text}=    Set Variable    ${EMPTY}
+    VAR    ${text}    ${EMPTY}
     TRY
         Wait For Elements State    ${locator}    attached       ${TIMEOUT}
         Wait For Elements State    ${locator}    visible        ${TIMEOUT}
@@ -113,7 +113,7 @@ Get Element Text
         ${text}=    browser.Get Text    ${locator}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed when, '${context_name}' --> | locator='${locator}' | ERROR: ${err}
+        VAR    ${msg}    Failed when, '${context_name}' --> | locator='${locator}' | ERROR: ${err}
         Fail    ${msg}
     END
     RETURN    ${text}
@@ -128,7 +128,7 @@ Verify Element Visible
         Wait For Elements State    ${locator}    stable         ${TIMEOUT}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed '${context_name}' --> | locator='${locator}' | ERROR: ${err}
+        VAR    ${msg}    Failed '${context_name}' --> | locator='${locator}' | ERROR: ${err}
         Fail    ${msg}
     END
 
@@ -144,7 +144,7 @@ Append To Field
         Fill Text    ${locator}    ${text}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed when, '${context_name}' --> | locator='${locator}' | ERROR: ${err}
+        VAR    ${msg}    Failed when, '${context_name}' --> | locator='${locator}' | ERROR: ${err}
         Fail    ${msg}
     END
 
@@ -159,11 +159,11 @@ Select Random Dropdown Option
         ${options}=    Get Select Options    ${JOURNEYS_FORM_REQUEST_CAR_TYPE_DROPDOWN}
         @{labels}=    Evaluate    [o['label'] for o in ${options}]
         ${choice}=    Evaluate    random.choice(${labels})    modules=random
-        Log To Console   Selected: ${choice}
+        Log    Selected: ${choice}    console=${LOG_TO_CONSOLE}
         Select Options By    ${JOURNEYS_FORM_REQUEST_CAR_TYPE_DROPDOWN}    text    ${choice}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed when, '${context_name}'  --> | locator='${locator}' | ERROR: ${err}
+        VAR    ${msg}    Failed when, '${context_name}'  --> | locator='${locator}' | ERROR: ${err}
 
 
 
@@ -177,7 +177,7 @@ Type Into Field
         Type Text    ${locator}    ${text}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed when, '${context_name}' --> | locator='${locator}' | ERROR: ${err}
+        VAR    ${msg}    Failed when, '${context_name}' --> | locator='${locator}' | ERROR: ${err}
         Fail    ${msg}
     END
 
@@ -192,7 +192,7 @@ Select From Dropdown
         Select Options By    ${locator}    ${attribute}    ${value}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed when '${context_name}' --> | locator='${locator}' | attribute='${attribute}' | value='${value}' | ERROR: ${err}
+        VAR    ${msg}    Failed when '${context_name}' --> | locator='${locator}' | attribute='${attribute}' | value='${value}' | ERROR: ${err}
         Fail    ${msg}
     END
     RETURN    ${value}
@@ -217,8 +217,8 @@ Generate Random Journey Locations
     @{dropoff_list}=    Ctyri Nahodne Lokace    ${dropoff_country}
     ${pick_up_adress}=    Select Random From List    @{pickup_list}
     ${dropp_off_adress}=    Select Random From List    @{dropoff_list}
-    Log To Console    \n--->Selected pickup address: ${pick_up_adress}
-    Log To Console    \n--->Selected drop-off address: ${dropp_off_adress}
+    Log    \n--->Selected pickup address: ${pick_up_adress}    console=${LOG_TO_CONSOLE}
+    Log    \n--->Selected drop-off address: ${dropp_off_adress}    console=${LOG_TO_CONSOLE}
     RETURN    ${pick_up_adress}    ${dropp_off_adress}
 
 Select Random Dropdown Value
@@ -244,10 +244,10 @@ Select Random Dropdown Value
 
         # Perform selection
         Select Options By    ${locator}    ${attribute}    ${selected_value}
-        Log To Console    Selected: ${selected_value}
+        Log    Selected: ${selected_value}    console=${LOG_TO_CONSOLE}
     EXCEPT    AS    ${err}
         Take Screenshot
-        ${msg}=    Set Variable    Failed when '${context_name}' --> | locator='${locator}' | attribute='${attribute}' | ERROR: ${err}
+        VAR    ${msg}    Failed when '${context_name}' --> | locator='${locator}' | attribute='${attribute}' | ERROR: ${err}
         Fail    ${msg}
     END
     RETURN    ${selected_value}

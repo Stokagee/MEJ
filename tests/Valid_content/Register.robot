@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    This test verifies elements on the register page.
-Resource    ../../Resources/Register/Keywords_register.resource
-Resource    ../../Resources/Register/Variables_register.resource
+Resource    ../../resources/Register/Keywords_register.resource
+Resource    ../../resources/Register/Variables_register.resource
 
 
 *** Test Cases ***

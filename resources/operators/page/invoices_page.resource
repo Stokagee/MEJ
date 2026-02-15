@@ -44,7 +44,7 @@ Verify Invoice ValidationError Is Visible
         Wait For Elements State    ${validation_locator}    visible    timeout=5s
         ${text}=    Get Text    ${validation_locator}
         Should Not Be Empty    ${text}    Validation error should contain text
-        Log    Validation error displayed: ${text}
+        Log    Validation error displayed: ${text}    console=${LOG_TO_CONSOLE}
     EXCEPT    AS    ${err}
         Take Screenshot
         Fail    Validation error was not displayed: ${err}
@@ -58,7 +58,7 @@ Verify Field Value MaxLength Truncation
     ${actual_length}=    Get Length    ${actual_value}
     Should Be Equal As Integers    ${actual_length}    ${expected_max_length}
     ...    Field value length (${actual_length}) does not match expected max length (${expected_max_length})
-    Log    Field correctly truncated to ${actual_length} characters
+    Log    Field correctly truncated to ${actual_length} characters    console=${LOG_TO_CONSOLE}
 
 Click Invoice Save And Trigger Validation
     [Documentation]    Clicks Save button to trigger validation

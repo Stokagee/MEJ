@@ -38,10 +38,10 @@ Create Tour Route And Accept By Operator And Validate API
     Click Search Button For Tour Routes Filter As Admin
     Open First Tour Route Item As Admin
     ${tour_route_id}=    Get WA2 ID From Tour Routes As Admin
-    Log To Console    \n--->WA2 ID of created tour route: ${tour_route_id}
+    Log    \n--->WA2 ID of created tour route: ${tour_route_id}    console=${LOG_TO_CONSOLE}
 
     FOR    ${attempt}    IN RANGE    5
-        Log To Console    \n--->Attempt ${attempt} to approve tour route
+        Log    \n--->Attempt ${attempt} to approve tour route    console=${LOG_TO_CONSOLE}
         Click Accounting Edit Button In Tour Routes As Admin
         Click Accounting Save Button In Tour Routes As Admin
         Click Approve Button In Tour Routes As Admin
