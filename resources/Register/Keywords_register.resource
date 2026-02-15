@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Variables_register.resource
-Library    ../../Resources/Python_skripts.py
+Library    ../../resources/Python_skripts.py
 Library    Browser
 Library    FakerLibrary
 Library    DatabaseLibrary
@@ -37,10 +37,9 @@ Fill Valid Credentials
     Wait For Elements State    xpath=//input[@name="Model.Phone"]    visible    ${SHORT}    # Wait for "Phone" field
     ${PHONE_NUMBER_FL}=    FakerLibrary.Random Number    digits=9    fix_len=${True}
     Fill Text    xpath=//input[@name="Model.Phone"]    ${PHONE_NUMBER_FL}    # Enter phone number
-    ${random_user}=    FakerLibrary.User name  
-    ${email}=    Catenate    SEPARATOR=    robot    ${random_user}    @example.com
-    Log To Console    ${email}
-    Set Global Variable    ${email}
+    ${random_user}=    FakerLibrary.User name
+    VAR    ${email}    robot${random_user}@example.com    scope=GLOBAL
+    Log    ${email}    console=${LOG_TO_CONSOLE}
     Wait For Elements State    xpath=//input[@name="Model.Email"]    visible    ${SHORT}    # Wait for "Email" field
     Fill Text    xpath=//input[@name="Model.Email"]    ${email}    # Enter email address
     Wait For Elements State    xpath=//input[@name="Model.Password"]    visible    ${SHORT}    # Wait for "Password" field
@@ -92,11 +91,11 @@ Fill Valid Credentials
     ...    db_host=${DB_HOST}
     ...    db_port=${DB_PORT}
     ...    odbc_driver={ODBC Driver 17 for SQL Server}
-    Log To Console    Connected to database: ${DB_NAME}
+    Log    Connected to database: ${DB_NAME}    console=${LOG_TO_CONSOLE}
     Table Must Exist    Driver
     Execute Sql String    UPDATE dri.Driver SET IsActive = 1 WHERE Email = '${email}'
     Execute Sql String    UPDATE idm.[User] SET EmailConfirmed = 1 WHERE Email = '${email}'
-    Log To Console    Email ${email} is confirmed
+    Log    Email ${email} is confirmed    console=${LOG_TO_CONSOLE}
     Disconnect From Database
 Navigate To SH Register Page
     [Documentation]    This keyword opens the browser and navigates to the login page.
@@ -127,10 +126,9 @@ Fill Valid SH Credentials
     Wait For Elements State    xpath=//input[@name="Model.Phone"]    visible    ${SHORT}    # Wait for "Phone" field
     ${PHONE_NUMBER_FL}=    FakerLibrary.Random Number    digits=9    fix_len=${True}
     Fill Text    xpath=//input[@name="Model.Phone"]    ${PHONE_NUMBER_FL}    # Enter phone number
-    ${random_user}=    FakerLibrary.User name  
-    ${email}=    Catenate    SEPARATOR=    robot    ${random_user}    @example.com
-    Log To Console    ${email}
-    Set Global Variable    ${email}
+    ${random_user}=    FakerLibrary.User name
+    VAR    ${email}    robot${random_user}@example.com    scope=GLOBAL
+    Log    ${email}    console=${LOG_TO_CONSOLE}
     Wait For Elements State    xpath=//input[@name="Model.Email"]    visible    ${SHORT}    # Wait for "Email" field
     Fill Text    xpath=//input[@name="Model.Email"]    ${email}    # Enter email address
     Wait For Elements State    xpath=//input[@name="Model.Password"]    visible    ${SHORT}    # Wait for "Password" field
@@ -182,11 +180,11 @@ Fill Valid SH Credentials
     ...    db_host=${DB_HOST}
     ...    db_port=${DB_PORT}
     ...    odbc_driver={ODBC Driver 17 for SQL Server}
-    Log To Console    Connected to database: ${DB_NAME}
+    Log    Connected to database: ${DB_NAME}    console=${LOG_TO_CONSOLE}
     Table Must Exist    ShuttleCompany
     Execute Sql String    UPDATE dri.ShuttleCompany SET IsActive = 1 WHERE Email = '${email}'
     Execute Sql String    UPDATE idm.[User] SET EmailConfirmed = 1 WHERE Email = '${email}'
-    Log To Console    Email ${email} is confirmed
+    Log    Email ${email} is confirmed    console=${LOG_TO_CONSOLE}
     Disconnect From Database
 
 Fill Valid VAT SH Credentials
@@ -204,10 +202,9 @@ Fill Valid VAT SH Credentials
     Wait For Elements State    xpath=//input[@name="Model.Phone"]    visible    ${SHORT}    # Wait for "Phone" field
     ${PHONE_NUMBER_FL}=    FakerLibrary.Random Number    digits=9    fix_len=${True}
     Fill Text    xpath=//input[@name="Model.Phone"]    ${PHONE_NUMBER_FL}    # Enter phone number
-    ${random_user}=    FakerLibrary.User name  
-    ${email}=    Catenate    SEPARATOR=    robot    ${random_user}    @example.com
-    Log To Console    ${email}
-    Set Global Variable    ${email}
+    ${random_user}=    FakerLibrary.User name
+    VAR    ${email}    robot${random_user}@example.com    scope=GLOBAL
+    Log    ${email}    console=${LOG_TO_CONSOLE}
     Wait For Elements State    xpath=//input[@name="Model.Email"]    visible    ${SHORT}    # Wait for "Email" field
     Fill Text    xpath=//input[@name="Model.Email"]    ${email}    # Enter email address
     Wait For Elements State    xpath=//input[@name="Model.Password"]    visible    ${SHORT}    # Wait for "Password" field
@@ -264,11 +261,11 @@ Fill Valid VAT SH Credentials
     ...    db_host=${DB_HOST}
     ...    db_port=${DB_PORT}
     ...    odbc_driver={ODBC Driver 17 for SQL Server}
-    Log To Console    Connected to database: ${DB_NAME}
+    Log    Connected to database: ${DB_NAME}    console=${LOG_TO_CONSOLE}
     Table Must Exist    ShuttleCompany
     Execute Sql String    UPDATE dri.ShuttleCompany SET IsActive = 1 WHERE Email = '${email}'
     Execute Sql String    UPDATE idm.[User] SET EmailConfirmed = 1 WHERE Email = '${email}'
-    Log To Console    Email ${email} is confirmed
+    Log    Email ${email} is confirmed    console=${LOG_TO_CONSOLE}
     Disconnect From Database
 
 
@@ -287,10 +284,9 @@ Fill Valid VAT Credentials
     Wait For Elements State    xpath=//input[@name="Model.Phone"]    visible    ${SHORT}    # Wait for "Phone" field
     ${PHONE_NUMBER_FL}=    FakerLibrary.Random Number    digits=9    fix_len=${True}
     Fill Text    xpath=//input[@name="Model.Phone"]    ${PHONE_NUMBER_FL}    # Enter phone number
-    ${random_user}=    FakerLibrary.User name  
-    ${email}=    Catenate    SEPARATOR=    robot    ${random_user}    @example.com
-    Log To Console    ${email}
-    Set Global Variable    ${email}
+    ${random_user}=    FakerLibrary.User name
+    VAR    ${email}    robot${random_user}@example.com    scope=GLOBAL
+    Log    ${email}    console=${LOG_TO_CONSOLE}
     Wait For Elements State    xpath=//input[@name="Model.Email"]    visible    ${SHORT}    # Wait for "Email" field
     Fill Text    xpath=//input[@name="Model.Email"]    ${email}    # Enter email address
     Wait For Elements State    xpath=//input[@name="Model.Password"]    visible    ${SHORT}    # Wait for "Password" field
@@ -347,11 +343,11 @@ Fill Valid VAT Credentials
     ...    db_host=${DB_HOST}
     ...    db_port=${DB_PORT}
     ...    odbc_driver={ODBC Driver 17 for SQL Server}
-    Log To Console    Connected to database: ${DB_NAME}
+    Log    Connected to database: ${DB_NAME}    console=${LOG_TO_CONSOLE}
     Table Must Exist    Driver
     Execute Sql String    UPDATE dri.Driver SET IsActive = 1 WHERE Email = '${email}'
     Execute Sql String    UPDATE idm.[User] SET EmailConfirmed = 1 WHERE Email = '${email}'
-    Log To Console    Email ${email} is confirmed
+    Log    Email ${email} is confirmed    console=${LOG_TO_CONSOLE}
     Disconnect From Database
 
 Navigate To Hotel Register Page
@@ -384,10 +380,9 @@ Fill Valid Hotel Credentials
     Wait For Elements State    xpath=//input[@name="Model.Phone"]    visible    ${SHORT}    # Wait for "Phone" field
     ${PHONE_NUMBER_FL}=    FakerLibrary.Random Number    digits=9    fix_len=${True}
     Fill Text    xpath=//input[@name="Model.Phone"]    ${PHONE_NUMBER_FL}    # Enter phone number
-    ${random_user}=    FakerLibrary.User name  
-    ${email}=    Catenate    SEPARATOR=    robot    ${random_user}    @example.com
-    Log To Console    ${email}
-    Set Global Variable    ${email}
+    ${random_user}=    FakerLibrary.User name
+    VAR    ${email}    robot${random_user}@example.com    scope=GLOBAL
+    Log    ${email}    console=${LOG_TO_CONSOLE}
     Wait For Elements State    xpath=//input[@name="Model.Email"]    visible    ${SHORT}    # Wait for "Email" field
     Fill Text    xpath=//input[@name="Model.Email"]    ${email}    # Enter email address
     Wait For Elements State    xpath=//input[@name="Model.Password"]    visible    ${SHORT}    # Wait for "Password" field
@@ -408,10 +403,10 @@ Fill Valid Hotel Credentials
     ...    db_host=${DB_HOST}
     ...    db_port=${DB_PORT}
     ...    odbc_driver={ODBC Driver 17 for SQL Server}
-    Log To Console    Connected to database: ${DB_NAME}
+    Log    Connected to database: ${DB_NAME}    console=${LOG_TO_CONSOLE}
     Table Must Exist    User
     Execute Sql String    UPDATE idm.[User] SET EmailConfirmed = 1 WHERE Email = '${email}'
-    Log To Console    Email ${email} is confirmed
+    Log    Email ${email} is confirmed    console=${LOG_TO_CONSOLE}
     Disconnect From Database
 
 

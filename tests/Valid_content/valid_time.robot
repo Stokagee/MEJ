@@ -21,7 +21,7 @@ Open And Validate Expected Time After Filling Locations
     ${expected_time}=    Get Element Text    ${JOURNEYS_FORM_REQUEST_TIME_TEXTAREA}
     Should Not Be Empty    ${expected_time}    msg=Expected time is empty after filling locations and saving time
     Should Match Regexp    ${expected_time}    \\d+    msg=Expected time does not have HH:MM format
-    Log To Console   \n Expected time is: \n \n------ \n ${expected_time} \n------
+    Log    \n Expected time is: \n \n------ \n ${expected_time} \n------    console=${LOG_TO_CONSOLE}
     [Teardown]    Close Browser
 
 Open And Validate Pick Up Time
@@ -51,7 +51,7 @@ Open And Validate Time In Pick Up Address
     ${expected_time}=    Get Element Text    ${JOURNEY_FORM_REQUEST_PICKUP_TIME_TEXTAREA}
     Should Not Be Empty    ${expected_time}    msg=Expected time is empty after filling locations and saving time
     Should Match Regexp    ${expected_time}    \\d+    msg=Expected time does not have HH:MM format
-    Log To Console   \n Expected time is: \n \n------ \n ${expected_time} \n------
+    Log    \n Expected time is: \n \n------ \n ${expected_time} \n------    console=${LOG_TO_CONSOLE}
     [Teardown]    Close Browser
 
 Open And Validate Time In Drop Off Address
@@ -67,7 +67,7 @@ Open And Validate Time In Drop Off Address
     ${expected_time}=    Get Element Text    ${JOURNEY_FORM_REQUEST_DROP_OFF_TIME_TEXTAREA}
     Should Not Be Empty    ${expected_time}    msg=Expected time is empty after filling locations and saving time
     Should Match Regexp    ${expected_time}    \\d+    msg=Expected time does not have HH:MM format
-    Log To Console   \n Expected time is: \n \n------ \n ${expected_time} \n------
+    Log    \n Expected time is: \n \n------ \n ${expected_time} \n------    console=${LOG_TO_CONSOLE}
     [Teardown]    Close Browser
 
 Open And Validate Time In Stops And Duration
@@ -84,8 +84,8 @@ Open And Validate Time In Stops And Duration
     ${expected_time}=    Get Element Text    ${JOURNEY_FORM_REQUEST_STOP_ADRESS_TEXTAREA}    wanted to get text from stop
     Should Not Be Empty    ${expected_time}    msg=Expected time is empty after filling locations and saving time
     Should Match Regexp    ${expected_time}    \\d+:\\d+    msg=Expected time does not have HH:MM format
-    Log To Console   \n Expected time is: \n \n------ \n ${expected_time} \n------
+    Log    \n Expected time is: \n \n------ \n ${expected_time} \n------    console=${LOG_TO_CONSOLE}
     ${expected_duration}=    Get Element Text    ${JOURNEY_FORM_REQUEST_STOP_ADRESS_DURATION_TEXTAREA}    wanted to get text from duration in stop
     Should Be Equal    ${stop_duration_for_verify} min    ${expected_duration}    msg=Duration in stops does not match the entered value
-    Log To Console   \n Expected duration is: \n \n------ \n ${expected_duration} min \n------
+    Log    \n Expected duration is: \n \n------ \n ${expected_duration} min \n------    console=${LOG_TO_CONSOLE}
     [Teardown]    Close Browser

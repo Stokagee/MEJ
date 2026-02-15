@@ -60,17 +60,17 @@ Fill And Save Locations Section
 
 Send New Booking And Welcome Message
     [Documentation]    Sends new booking and clicks WM Sent with retry attempts on failure
-    ${success}=    Set Variable    ${FALSE}
+    VAR    ${success}    ${FALSE}
 
     WHILE    ${success} == ${FALSE}    limit=${TIMEOUT}
         TRY
-            Log To Console    \n---> Attempting to click new booking
+            Log    \n---> Attempting to click new booking    console=${LOG_TO_CONSOLE}
             Click New Booking
             Click Welcome Message Sent
-            Log To Console    \n---> Successfully clicked "New booking"
-            ${success}=    Set Variable    ${TRUE}
+            Log    \n---> Successfully clicked "New booking"    console=${LOG_TO_CONSOLE}
+            VAR    ${success}    ${TRUE}
         EXCEPT
-            Log To Console    message
+            Log    message    console=${LOG_TO_CONSOLE}
             Sleep    2
         END
     END

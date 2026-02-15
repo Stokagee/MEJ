@@ -21,6 +21,7 @@ services:
       - MEJ_DB_NAME=${MEJ_DB_NAME}
       - MEJ_DB_USER=${MEJ_DB_USER}
       - MEJ_DB_PASSWORD=${MEJ_DB_PASSWORD}
+      - MEJ_LOG_TO_CONSOLE=${MEJ_LOG_TO_CONSOLE}
     volumes:
       # Mount results folder to access test reports
       - ./results:/app/results

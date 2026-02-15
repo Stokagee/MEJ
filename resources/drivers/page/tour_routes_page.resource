@@ -25,8 +25,8 @@ Enter To Location
 Select Tomorrow Date
     [Documentation]    Selects tomorrow's date in date picker on tour routes page
     Sleep    1
-    ${tomorrow}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(days=1)).strftime('%d-%m-%Y')    modules=datetime
-    Log To Console    \n \n------- \n Date entered into date picker: ${tomorrow} \n-------
+    VAR    ${tomorrow}    ${{(__import__('datetime').datetime.now() + __import__('datetime').timedelta(days=1)).strftime('%d-%m-%Y')}}
+    Log    \n \n------- \n Date entered into date picker: ${tomorrow} \n-------    console=${LOG_TO_CONSOLE}
     Type Into Field   ${TOUR_ROUTES_DATE_PICKER_INPUT}    ${tomorrow}    entering date "${tomorrow}" into date picker
     Keyboard Key    press    Tab
 

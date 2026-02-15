@@ -2,8 +2,8 @@
 Resource    ../../common.resource
 Library    Browser
 Library    FakerLibrary
-Resource    ../../Resources/Register/Keywords_register.resource
-Library    ../../Resources/Python_skripts.py
+Resource    ../../resources/Register/Keywords_register.resource
+Library    ../../resources/Python_skripts.py
 
 
 *** Test Cases ***

@@ -22,7 +22,7 @@ Select Journey Type
     ${first}=    Get From List    ${labels}    0
     Remove Values From List    ${labels}    ${first}
     ${choice}=    Evaluate    random.choice(${labels})    modules=random
-    Log To Console    Selected: ${choice}
+    Log    Selected: ${choice}    console=${LOG_TO_CONSOLE}
     Select Options By    ${JOURNEYS_FORM_REQUEST_TYPE_DROPDOWN}    text    ${choice}
     RETURN    ${choice}
 
@@ -45,7 +45,7 @@ Select Car Type
     ${first}=    Get From List    ${labels}    0
     Remove Values From List    ${labels}    ${first}
     ${choice}=    Evaluate    random.choice(${labels})    modules=random
-    Log To Console   Selected: ${choice}
+    Log    Selected: ${choice}    console=${LOG_TO_CONSOLE}
     Select Options By    ${JOURNEYS_FORM_REQUEST_CAR_TYPE_DROPDOWN}    text    ${choice}
     RETURN    ${choice}
 
@@ -77,14 +77,14 @@ Enter Passenger Phone
     [Documentation]    Enters passenger phone number
     [Arguments]    ${passangers_phone}
     Fill Field    ${JOURNEYS_FORM_REQUEST_PASSENGERS_PHONE_INPUT}    ${passangers_phone}
-    Log To Console    New phone number: ${passangers_phone}
+    Log    New phone number: ${passangers_phone}    console=${LOG_TO_CONSOLE}
     RETURN    ${passangers_phone}
 
 Enter Passenger Email
     [Documentation]    Enters passenger email
     [Arguments]    ${passangers_email}
     Fill Field    ${JOURNEYS_FORM_REQUEST_PASSENGERS_EMAIL_INPUT}    ${passangers_email}
-    Log To Console    New email: ${passangers_email}
+    Log    New email: ${passangers_email}    console=${LOG_TO_CONSOLE}
     RETURN    ${passangers_email}
 
 Save Form Left Section
@@ -231,7 +231,7 @@ Close First Open Form
 Save Product ID From Open Form
     [Documentation]    Saves Product ID from open form to variable
     ${product_id}=    Get Text    ${JOURNEY_FORM_REQUEST_PRODUCT_ID_TEXTAREA}
-    Log To Console    Product ID is: ${product_id}
+    Log    Product ID is: ${product_id}    console=${LOG_TO_CONSOLE}
     RETURN    ${product_id}
 
 Click Add Stop In Form

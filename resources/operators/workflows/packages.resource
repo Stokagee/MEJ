@@ -29,16 +29,16 @@ Fill Detail For New Candidate And Save
 
 Create Package
     [Documentation]    Attempts to create new package from candidate
-    ${success}=    Set Variable    ${FALSE}
+    VAR    ${success}    ${FALSE}
     WHILE    ${success} == ${FALSE}    limit=${TIMEOUT}
         TRY
-            Log To Console    \n---> Attempting to click create package
+            Log    \n---> Attempting to click create package    console=${LOG_TO_CONSOLE}
             Click Create Package
             Confirm Accept Modal For Create Package
-            Log To Console    \n---> Successfully clicked and created new package
-            ${success}=    Set Variable    ${TRUE}
+            Log    \n---> Successfully clicked and created new package    console=${LOG_TO_CONSOLE}
+            VAR    ${success}    ${TRUE}
         EXCEPT
-            Log To Console    message
+            Log    message    console=${LOG_TO_CONSOLE}
             Sleep    2
         END
     END
@@ -69,7 +69,7 @@ Create Journey With Random Locations
     ...                Returns product_id for first order (index 0).
     ...                Available countries: Czech Republic, Germany, Poland, Austria, Slovakia, etc.
     [Arguments]    ${order_index}    ${pick_up_time}    ${passengers_count}    ${bokun_amount}    ${bokun_profit}    ${driver_amount}    ${driver_profit}    ${pickup_country}=Česko    ${dropoff_country}=Německo
-    Log To Console    \n---> Starting new order: ${order_index + 1}
+    Log    \n---> Starting new order: ${order_index + 1}    console=${LOG_TO_CONSOLE}
     # Generate test data
     ${note_for_dri}=    Sentences
     ${note_for_op}=     Sentences
@@ -98,23 +98,23 @@ Create Journey With Random Locations
     Fill And Save Locations Section      ${pick_up_adress}    ${dropp_off_adress}
     Send New Booking And Welcome Message
     # Save product_id only for first order
-    ${product_id}=    Set Variable    ${EMPTY}
+    VAR    ${product_id}    ${EMPTY}
     IF    ${order_index} == 0
         ${product_id}=    Save Product ID From Open Form
         Close First Open Form
     END
-    Log To Console    \n---> Completed order ${order_index + 1}.
+    Log    \n---> Completed order ${order_index + 1}.    console=${LOG_TO_CONSOLE}
     RETURN    ${product_id}
 
 Create Multiple Journeys For Package
     [Documentation]    Creates specified number of journeys and returns product_id of first journey.
     ...                Available countries: Czech Republic, Germany, Poland, Austria, Slovakia, etc.
     [Arguments]    ${journey_count}    ${pick_up_time}    ${passengers_count}    ${bokun_amount}    ${bokun_profit}    ${driver_amount}    ${driver_profit}    ${pickup_country}   ${dropoff_country}
-    ${product_id}=    Set Variable    ${EMPTY}
+    VAR    ${product_id}    ${EMPTY}
     FOR    ${index}    IN RANGE    ${journey_count}
         ${temp_id}=    Create Journey With Random Locations    ${index}    ${pick_up_time}    ${passengers_count}    ${bokun_amount}    ${bokun_profit}    ${driver_amount}    ${driver_profit}    ${pickup_country}    ${dropoff_country}
         IF    ${index} == 0
-            ${product_id}=    Set Variable    ${temp_id}
+            VAR    ${product_id}    ${temp_id}
         END
     END
     RETURN    ${product_id}

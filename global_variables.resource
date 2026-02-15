@@ -10,6 +10,9 @@
 #   4. Command line: robot --variable NAME:value tests/
 # =============================================================================
 
+# Logging configuration
+${LOG_TO_CONSOLE}     %{MEJ_LOG_TO_CONSOLE=True}
+
 # Application URL
 ${URL}                %{MEJ_URL=}
 

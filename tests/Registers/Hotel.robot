@@ -4,8 +4,8 @@ Documentation     This test suite validates the registration functionality for h
 ...               - A hotel can register using valid credentials and business details.
 Resource    ../../common.resource
 Library    Browser
-Resource    ../../Resources/Register/Keywords_register.resource
-Library    ../../Resources/Python_skripts.py
+Resource    ../../resources/Register/Keywords_register.resource
+Library    ../../resources/Python_skripts.py
 
 *** Test Cases ***
 Register As Hotel

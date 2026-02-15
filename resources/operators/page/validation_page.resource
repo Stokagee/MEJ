@@ -28,7 +28,7 @@ Close Journey Form Safely
             Wait For Elements State    ${JOURNEYS_CLOSE_NEW_JOURNEY_BUTTON}    hidden    timeout=3s
         END
     EXCEPT
-        Log    Form is not open or already closed
+        Log    Form is not open or already closed    console=${LOG_TO_CONSOLE}
     END
 
 # === VALIDATION KEYWORDS ===
@@ -57,7 +57,7 @@ Verify Validation Error Is Visible
         Wait For Elements State    ${validation_locator}    visible    timeout=5s
         ${text}=    Get Text    ${validation_locator}
         Should Not Be Empty    ${text}    Validation error should contain text
-        Log    Validation error displayed: ${text}
+        Log    Validation error displayed: ${text}    console=${LOG_TO_CONSOLE}
     EXCEPT    AS    ${err}
         Take Screenshot
         Fail    Validation error was not displayed for ${validation_locator}: ${err}

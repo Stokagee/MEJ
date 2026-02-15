@@ -2,8 +2,8 @@
 Documentation     This test suite validates the registration functionality for drivers with VAT.
 ...               It guides users through the registration process and verifies that.
 Resource    ../../common.resource
-Resource    ../../Resources/Register/Keywords_register.resource
-Library    ../../Resources/Python_skripts.py
+Resource    ../../resources/Register/Keywords_register.resource
+Library    ../../resources/Python_skripts.py
 Library    Browser
 
 *** Test Cases ***
