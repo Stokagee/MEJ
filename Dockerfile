@@ -1,5 +1,7 @@
 FROM python:3.11-slim
 
+RUN python -m pip install --upgrade pip
+
 # Install Node.js (required for rfbrowser/Playwright)
 RUN apt-get update && apt-get install -y \
     curl \
