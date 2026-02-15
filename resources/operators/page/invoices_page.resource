@@ -50,6 +50,16 @@ Verify Invoice ValidationError Is Visible
         Fail    Validation error was not displayed: ${err}
     END
 
+Verify Field Value MaxLength Truncation
+    [Documentation]    Verifies that field value is truncated to expected max length.
+    ...                Used for fields with HTML maxlength attribute that truncate input.
+    [Arguments]    ${locator}    ${expected_max_length}
+    ${actual_value}=    Get Property    ${locator}    value
+    ${actual_length}=    Get Length    ${actual_value}
+    Should Be Equal As Integers    ${actual_length}    ${expected_max_length}
+    ...    Field value length (${actual_length}) does not match expected max length (${expected_max_length})
+    Log    Field correctly truncated to ${actual_length} characters
+
 Click Invoice Save And Trigger Validation
     [Documentation]    Clicks Save button to trigger validation
     Click Element    ${ADMIN_INVOICES_FORM_SAVE_BUTTON}    Saving invoice form
@@ -59,10 +69,6 @@ Apply Invoice Filter
     [Documentation]    Applies filter
     Click Element    ${ADMIN_INVOICES_FILTER_SEARCH_BUTTON}    Applying filter
     Sleep    1s    # Wait for results to load
-
-Reset Invoice Filter
-    [Documentation]    Resets filter
-    Click Element    ${ADMIN_INVOICES_FILTER_RESET_BUTTON}    Resetting filter
 
 Fill Invoice VAT Number Filter
     [Documentation]    Fills VAT number into filter

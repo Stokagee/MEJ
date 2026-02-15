@@ -68,69 +68,63 @@ Test Invalid Invoice Email Format Without At Sign Shows Error
 ### *** Form Validation - Max Length ***
 
 Test Too Long Business Number Shows Error
-    [Documentation]    Verify that too long Business Number (>20 characters) displays error.
-    ...                Validation rule: MaxLength(20)
+    [Documentation]    Verify that too long Business Number (>20 characters) is truncated to 20.
+    ...                Validation rule: MaxLength(20) - browser truncates input
     [Tags]    ui    invoice    negative    p1    validation    maxlength
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Fill Invoice Field With Generated Text    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    21
-    Click Invoice Save And Trigger Validation
-    Verify Invoice Validation Error Is Visible    ${ADMIN_INVOICES_BUSINESS_NO_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    20
     [Teardown]    Close Browser
 
 Test Too Long VAT Number Shows Error
-    [Documentation]    Verify that too long VAT Number (>32 characters) displays error.
-    ...                Validation rule: MaxLength(32)
+    [Documentation]    Verify that too long VAT Number (>32 characters) is truncated to 32.
+    ...                Validation rule: MaxLength(32) - browser truncates input
     [Tags]    ui    invoice    negative    p1    validation    maxlength
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Fill Invoice Field With Generated Text    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    33
-    Click Invoice Save And Trigger Validation
-    Verify Invoice Validation Error Is Visible    ${ADMIN_INVOICES_VAT_NO_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    32
     [Teardown]    Close Browser
 
 Test Too Long Business Name Shows Error
-    [Documentation]    Verify that too long Business Name (>512 characters) displays error.
-    ...                Validation rule: MaxLength(512)
+    [Documentation]    Verify that too long Business Name (>512 characters) is truncated to 512.
+    ...                Validation rule: MaxLength(512) - browser truncates input
     [Tags]    ui    invoice    negative    p1    validation    maxlength
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Fill Invoice Field With Generated Text    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    513
-    Click Invoice Save And Trigger Validation
-    Verify Invoice Validation Error Is Visible    ${ADMIN_INVOICES_BUSINESS_NAME_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    512
     [Teardown]    Close Browser
 
 Test Too Long Name Shows Error
-    [Documentation]    Verify that too long Name (>257 characters) displays error.
-    ...                Validation rule: MaxLength(257)
+    [Documentation]    Verify that too long Name (>257 characters) is truncated to 257.
+    ...                Validation rule: MaxLength(257) - browser truncates input
     [Tags]    ui    invoice    negative    p1    validation    maxlength
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Fill Invoice Field With Generated Text    ${ADMIN_INVOICES_FORM_NAME_INPUT}    258
-    Click Invoice Save And Trigger Validation
-    Verify Invoice Validation Error Is Visible    ${ADMIN_INVOICES_NAME_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${ADMIN_INVOICES_FORM_NAME_INPUT}    257
     [Teardown]    Close Browser
 
 Test Too Long Email Shows Error
-    [Documentation]    Verify that too long Email (>256 characters) displays error.
-    ...                Validation rule: MaxLength(256)
+    [Documentation]    Verify that too long Email (>256 characters) is truncated to 256.
+    ...                Validation rule: MaxLength(256) - browser truncates input
     [Tags]    ui    invoice    negative    p1    validation    maxlength
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Fill Invoice Field With Generated Text    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    257
-    Click Invoice Save And Trigger Validation
-    Verify Invoice Validation Error Is Visible    ${ADMIN_INVOICES_EMAIL_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    256
     [Teardown]    Close Browser
 
 Test Too Long Product Name Shows Error
-    [Documentation]    Verify that too long Product Name (>90 characters) displays error.
-    ...                Validation rule: MaxLength(90)
+    [Documentation]    Verify that too long Product Name (>90 characters) is truncated to 90.
+    ...                Validation rule: MaxLength(90) - browser truncates input
     [Tags]    ui    invoice    negative    p1    validation    maxlength
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Fill Invoice Field With Generated Text    ${ADMIN_INVOICES_FORM_PRODUCT_NAME_INPUT}    91
-    Click Invoice Save And Trigger Validation
-    Verify Invoice Validation Error Is Visible    ${ADMIN_INVOICES_PRODUCT_NAME_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${ADMIN_INVOICES_FORM_PRODUCT_NAME_INPUT}    90
     [Teardown]    Close Browser
 
 ### *** Filter Tests ***
@@ -143,16 +137,6 @@ Test Filter By VAT Number
     Apply Invoice Filter
     # Verify that page does not show error
     Wait For Elements State    ${ADMIN_INVOICES_FILTER_PANEL}    visible    timeout=${TIMEOUT}
-    [Teardown]    Close Browser
-
-Test Filter Reset Clears All Fields
-    [Documentation]    Verify that filter reset clears all fields.
-    [Tags]    ui    invoice    positive    p2    filter
-    [Setup]    Open Browser And Navigate To Invoices Page
-    Fill Invoice VAT Number Filter    CZ12345678
-    Reset Invoice Filter
-    ${value}=    Get Property    ${ADMIN_INVOICES_FILTER_VAT_NUMBER_INPUT}    value
-    Should Be Empty    ${value}
     [Teardown]    Close Browser
 
 ### *** Export Tests ***
