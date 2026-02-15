@@ -628,12 +628,12 @@ Pri selhani testu se automaticky uklada screenshot a HTML stav stranky.
 
 ### Robot Framework globalni promenne
 
-| Promenna | Vyznam | Vychozi hodnota |
-|----------|--------|-----------------|
-| `${URL}` | URL aplikace (z `MEJ_URL`) | `${EMPTY}` |
+| Promenna | Vyznam | Zdroj |
+|----------|--------|-------|
+| `${URL}` | URL aplikace | `MEJ_URL` env var |
 | `${TIMEOUT}` | Timeout pro cekani na prvky | `60` sekund |
 | `${BROWSER}` | Typ browseru | `chromium` |
-| `${HEADLESS}` | Headless mode | `${True}` |
+| `${HEADLESS}` | Headless mode | `MEJ_HEADLESS` env var |
 | `${WIDTH}` | Sirka okna browseru | `1800` |
 | `${HEIGHT}` | Vyska okna browseru | `900` |
 

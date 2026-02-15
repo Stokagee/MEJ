@@ -6,9 +6,9 @@ services:
     container_name: mej-rf-tests
     environment:
       # Pass environment variables from .env file or host
-      - MEJ_URL=${MEJ_URL:-https://shared-testing-2.continero.com/}
-      - MEJ_API_URL=${MEJ_API_URL:-https://shared-testing-2.continero.com}
-      - MEJ_HEADLESS=${MEJ_HEADLESS:-True}
+      - MEJ_URL=${MEJ_URL}
+      - MEJ_API_URL=${MEJ_API_URL}
+      - MEJ_HEADLESS=${MEJ_HEADLESS}
       - MEJ_ADMIN_EMAIL=${MEJ_ADMIN_EMAIL}
       - MEJ_ADMIN_PASSWORD=${MEJ_ADMIN_PASSWORD}
       - MEJ_DRIVER_EMAIL=${MEJ_DRIVER_EMAIL}

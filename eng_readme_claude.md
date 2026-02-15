@@ -628,12 +628,12 @@ When a test fails, a screenshot and HTML page state are automatically saved.
 
 ### Robot Framework global variables
 
-| Variable | Meaning | Default value |
-|----------|---------|---------------|
-| `${URL}` | Application URL (from `MEJ_URL`) | `${EMPTY}` |
+| Variable | Meaning | Source |
+|----------|---------|--------|
+| `${URL}` | Application URL | `MEJ_URL` env var |
 | `${TIMEOUT}` | Timeout for waiting on elements | `60` seconds |
 | `${BROWSER}` | Browser type | `chromium` |
-| `${HEADLESS}` | Headless mode | `${True}` |
+| `${HEADLESS}` | Headless mode | `MEJ_HEADLESS` env var |
 | `${WIDTH}` | Browser window width | `1800` |
 | `${HEIGHT}` | Browser window height | `900` |
 
