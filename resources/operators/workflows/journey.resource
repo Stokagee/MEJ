@@ -62,7 +62,7 @@ Send New Booking And Welcome Message
     [Documentation]    Sends new booking and clicks WM Sent with retry attempts on failure
     ${success}=    Set Variable    ${FALSE}
 
-    WHILE    ${success} == ${FALSE}    limit=${timeout}
+    WHILE    ${success} == ${FALSE}    limit=${TIMEOUT}
         TRY
             Log To Console    \n---> Attempting to click new booking
             Click New Booking
@@ -77,7 +77,7 @@ Send New Booking And Welcome Message
 
     IF    ${success} == ${FALSE}
         Take Screenshot
-        Fail    Saving and sending booking failed after repeated attempts within timeout ${timeout}.
+        Fail    Saving and sending booking failed after repeated attempts within timeout ${TIMEOUT}.
     END
 
 Add Stop To Journey

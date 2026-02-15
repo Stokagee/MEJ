@@ -30,7 +30,7 @@ Fill Detail For New Candidate And Save
 Create Package
     [Documentation]    Attempts to create new package from candidate
     ${success}=    Set Variable    ${FALSE}
-    WHILE    ${success} == ${FALSE}    limit=${timeout}
+    WHILE    ${success} == ${FALSE}    limit=${TIMEOUT}
         TRY
             Log To Console    \n---> Attempting to click create package
             Click Create Package
@@ -45,7 +45,7 @@ Create Package
 
     IF    ${success} == ${FALSE}
         Take Screenshot
-        Fail    Saving and sending booking failed after repeated attempts within timeout ${timeout}.
+        Fail    Saving and sending booking failed after repeated attempts within timeout ${TIMEOUT}.
     END
 
 Navigate To Packages Tab And Open Edit

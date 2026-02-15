@@ -14,7 +14,7 @@
 ${URL}                %{MEJ_URL=}
 
 # Timeout for waiting on elements
-${TIMEOUT}            60
+${TIMEOUT}            %{MEJ_TIMEOUT=0}
 
 # Login credentials - Admin
 ${ADMIN_EMAIL}        %{MEJ_ADMIN_EMAIL=}
