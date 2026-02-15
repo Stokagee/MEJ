@@ -1,7 +1,7 @@
 *** Settings ***
+Resource    ../../common.resource
 Library    Browser
 Library    FakerLibrary
-Resource    ../../Resources/Register/Variables_register.resource
 Resource    ../../Resources/Register/Keywords_register.resource
 Library    ../../Resources/Python_skripts.py
 
@@ -13,9 +13,8 @@ Register As Shuttle Company
     ...                - A shuttle company can register using valid credentials and business details.
     ...                - The user is redirected to the dashboard after successful registration.
     ...                - The dashboard displays a welcome message to confirm success.
-    New Browser    chromium    headless=${True}
-    New Context    # Open a new context
-    New Page    ${URL}   # Open the page
+    ${browser_id}    ${context_id}    ${page_id}=    Initialize Browser Session
+    ...    ${BROWSER}    ${HEADLESS}    ${URL}    ${WIDTH}    ${HEIGHT}
     Navigate To SH Register Page
     Fill Valid SH Credentials
     [Teardown]    Close Browser

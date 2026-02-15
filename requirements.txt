@@ -4,6 +4,7 @@ robotframework-browser>=18.0
 robotframework-faker>=5.0
 robotframework-databaselibrary>=1.4
 robotframework-requests>=0.9
+geopy>=2.4.1
 
 # Discord notifications
 # requests>=2.28.0

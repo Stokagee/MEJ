@@ -65,6 +65,14 @@ ${ADMIN_INVOICES_FORM_REMOVE_INVOICE_BUTTON}                css=.table-inner-pan
 ${ADMIN_INVOICES_VALIDATION_ERROR_TEXTAREA}                 css=.invalid-feedback:visible
 ${ADMIN_INVOICES_FORM_ERROR_TEXTAREA}                       css=.error-validation-message
 
+### *** Field-Specific Validation Messages ***
+${ADMIN_INVOICES_BUSINESS_NO_VALIDATION}                    css=input[placeholder="Identification No"] ~ .invalid-feedback
+${ADMIN_INVOICES_VAT_NO_VALIDATION}                         css=input[placeholder="VAT No."] ~ .invalid-feedback
+${ADMIN_INVOICES_BUSINESS_NAME_VALIDATION}                  css=input[placeholder="Business name"] ~ .invalid-feedback
+${ADMIN_INVOICES_NAME_VALIDATION}                           css=input[placeholder="Name"] ~ .invalid-feedback
+${ADMIN_INVOICES_EMAIL_VALIDATION}                          css=input[placeholder="Email"] ~ .invalid-feedback
+${ADMIN_INVOICES_PRODUCT_NAME_VALIDATION}                   css=input[placeholder="Product name"] ~ .invalid-feedback
+
 ### *** Detail View - Read Only ***
 ${ADMIN_INVOICES_DETAIL_INVOICE_NO_TEXTAREA}                xpath=//div[text()="Invoice #"]/following-sibling::div[contains(@class,"font-mid-label")][1]
 ${ADMIN_INVOICES_DETAIL_ORDER_NO_TEXTAREA}                  xpath=//div[text()="Order #"]/following-sibling::div[contains(@class,"font-mid-label")][1]
