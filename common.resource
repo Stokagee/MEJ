@@ -8,7 +8,6 @@ Library    RequestsLibrary
 Library    DatabaseLibrary
 #Library    DebugLibrary
 Library    resources/libraries/address_generator.py
-#Library    ImageComparisonLibrary
 Resource    login_locators.resource
 Resource    global_variables.resource
 Resource    login_page.resource

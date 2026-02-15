@@ -39,7 +39,7 @@ ${API_KEY_VALUE}      ${EMPTY}
 ${DB_CONFIG}          pyodbc
 ${DB_NAME}            ${EMPTY}
 ${DB_HOST}            %{DB_HOST=}
-${DB_PORT}            %{DB_PORT=11433}
+${DB_PORT}            %{DB_PORT=}
 ${DB_USER}            %{DB_USER=}
 ${DB_PASSWORD}        %{DB_PASSWORD=}
 ${DB_CONN_STRING}     DRIVER={ODBC Driver 17 for SQL Server};SERVER=${DB_HOST},${DB_PORT};DATABASE=${DB_NAME};UID=${DB_USER};PWD=${DB_PASSWORD};TrustServerCertificate=yes
