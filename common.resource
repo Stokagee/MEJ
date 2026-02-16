@@ -34,7 +34,6 @@ Resource    resources/operators/workflows/invoices.resource
 # *** API ***
 Resource    resources/api/tour_route_api.resource
 # *** DB ***
-Resource    resources/db/invoice_db.resource
 # *** Driver ***
 Resource    resources/drivers/page/main_page.resource
 Resource    resources/drivers/locators/main_locators.resource
@@ -54,6 +53,41 @@ Resource    resources/company/locators/requsted_packages.resource
 Resource    resources/company/page/requested_packages.resource
 
 *** Keywords ***
+
+# === LOGGING KEYWORDS ===
+
+Log Action
+    [Documentation]    Logs a user action (clicks, navigation, form submissions).
+    ...                Use for: button clicks, page navigation, form submissions, etc.
+    [Arguments]    ${action_description}
+    Log    \n---> ${action_description}    console=${LOG_TO_CONSOLE}
+
+Log Data
+    [Documentation]    Logs data values with consistent formatting.
+    ...                Use for: entered values, selected options, retrieved data.
+    ...                WARNING: NEVER use for passwords, API keys, or tokens!
+    [Arguments]    ${data_type}    ${value}
+    Log    \n---> ${data_type}: ${value}    console=${LOG_TO_CONSOLE}
+
+Log Workflow Start
+    [Documentation]    Logs the start of a workflow with its name.
+    ...                Use at the beginning of complex multi-step operations.
+    [Arguments]    ${workflow_name}
+    Log    \n======= Starting: ${workflow_name} =======    console=${LOG_TO_CONSOLE}
+
+Log Workflow End
+    [Documentation]    Logs the end of a workflow with its name.
+    ...                Use at the end of complex multi-step operations.
+    [Arguments]    ${workflow_name}
+    Log    \n======= Completed: ${workflow_name} =======    console=${LOG_TO_CONSOLE}
+
+Log Verification
+    [Documentation]    Logs verification/assertion results.
+    ...                Use for: login success checks, element visibility, data validation.
+    [Arguments]    ${what_is_verified}    ${result}=OK
+    Log    \n---> Verified: ${what_is_verified} [${result}]    console=${LOG_TO_CONSOLE}
+
+# === CORE KEYWORDS ===
 
 Initialize Browser Session
     [Documentation]    Creates a new browser context with the specified settings. All settings are configured in global_variables.resource

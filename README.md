@@ -62,12 +62,10 @@ MEJ/
 │   ├── company/           # Company role
 │   ├── drivers/           # Driver role
 │   ├── operators/         # Operator role
-│   ├── Register/          # Registrace
 │   └── libraries/         # Python knihovny
 └── tests/                 # Testovací soubory
     ├── Negative/          # Negativní testy
     ├── Operator/          # Operátor testy
-    ├── Registers/         # Registrační testy
     └── Valid_content/     # Validační testy
 ```
 
