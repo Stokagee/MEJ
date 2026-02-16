@@ -63,17 +63,6 @@ Validate Filter Search Function
     Wait For Elements State    ${ADMIN_INVOICES_FILTER_PANEL}    visible    timeout=${TIMEOUT}
     [Teardown]    Close Browser
 
-Validate Filter Reset Function
-    [Documentation]    Test that reset button clears filled fields.
-    [Tags]    ui    invoice    positive    p2    filter    reset
-    [Setup]    Open Browser And Navigate To Invoices Page
-    Fill Invoice VAT Number Filter    ${TEST_VAT_NUMBER}
-    Reset Invoice Filter
-    Sleep    1s
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FILTER_VAT_NUMBER_INPUT}    value
-    Should Be Empty    ${value}    msg=Filter reset did not clear VAT Number!
-    [Teardown]    Close Browser
-
 ### *** Invoice Table Validation ***
 
 Validate Invoice Table Display

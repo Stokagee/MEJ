@@ -87,36 +87,3 @@ Download Invoices As XML
 Download Invoices As CSV
     [Documentation]    Downloads invoices as CSV
     Click Element    ${ADMIN_INVOICES_FILTER_DOWNLOAD_CSV_BUTTON}    Downloading CSV
-
-# === TABLE KEYWORDS ===
-Enter Order Name In Invoice Form
-    [Documentation]    Enters Order Name in invoice form
-    [Arguments]    ${order_name}
-    Fill Field    ${ADMIN_INVOICES_FORM_ORDER_NAME_INPUT}    ${order_name}    entering Order Name
-
-Enter Product Name In Invoice Form
-    [Documentation]    Enters Product Name in invoice form
-    [Arguments]    ${product_name}
-    Fill Field    ${ADMIN_INVOICES_FORM_PRODUCT_NAME_INPUT}    ${product_name}    entering Product Name
-
-Enter Profit For MEJ In Invoice Form
-    [Documentation]    Enters Profit For MEJ in invoice form
-    [Arguments]    ${profit_mej}
-    Fill Field    ${ADMIN_INVOICES_FORM_PROFIT_FOR_MEJ_INPUT}    ${profit_mej}    entering Profit For MEJ
-
-Enter Received Payment In Invoice Form
-    [Documentation]    Enters Received Payment in invoice form
-    [Arguments]    ${received_payment}
-    Fill Field    ${ADMIN_INVOICES_FORM_RECEIVED_PAYMENT_INPUT}    ${received_payment}    entering Received Payment
-
-Select Driver In Invoice Form
-    [Documentation]    Selects driver in invoice form
-    Select Random Dropdown Value   ${ADMIN_INVOICES_FORM_DRIVER_DROPDOWN}    attribute=value    skip_first=${True}    context_name=selecting driver
-
-Save Invoice Form
-    [Documentation]    Saves invoice form
-    Click Invoice Save And Trigger Validation
-
-Verify Invoice Created In UI
-    [Documentation]    Verifies that invoice was created in UI
-    Verify Element Visible    ${ADMIN_INVOICES_FORM_REMOVE_INVOICE_BUTTON}    Invoice probably not created correctly - Remove button not found
