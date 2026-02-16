@@ -14,6 +14,7 @@ Knihovna vyžaduje 'geopy' pro výpočet vzdálenosti.
 """
 from typing import Dict, List, Tuple, Optional
 import random
+from robot.api import logger
 
 # Pokus o import knihovny geopy
 try:
@@ -193,6 +194,8 @@ def ctyri_nahodne_lokace(country: str) -> list:
     Portugalsko, Rakousko, Rumunsko, Řecko, Slovensko, Slovinsko, Španělsko, Švédsko, Švýcarsko,
     Velká Británie.
     """
+    logger.info(f"\n---> Generating 4 random locations for country: {country}")
+
     if not GEO_AVAILABLE:
         raise NotImplementedError("Funkce 'ctyri_nahodne_lokace' vyžaduje knihovnu 'geopy'. Prosím, nainstalujte ji pomocí 'pip install geopy'.")
 
@@ -223,7 +226,7 @@ def ctyri_nahodne_lokace(country: str) -> list:
             if distance < min_distance_km:
                 is_valid = False
                 break
-        
+
         if is_valid:
             # ZMĚNA: Ukládáme celý slovník
             selected_cities_data.append(candidate_city)
@@ -233,4 +236,5 @@ def ctyri_nahodne_lokace(country: str) -> list:
 
     # ZMĚNA: Až na konci z celých slovníků vytáhneme jen jména
     final_city_names = [city['name'] for city in selected_cities_data]
+    logger.info(f"\n---> Generated locations: {final_city_names}")
     return final_city_names

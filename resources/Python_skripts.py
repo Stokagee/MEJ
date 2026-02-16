@@ -1,5 +1,6 @@
 from faker import Faker
 from robot.api.deco import keyword
+from robot.api import logger
 import random
 
 
@@ -50,9 +51,12 @@ def generate_vat_number(country_code="CZ"):
     """
     Generates a VAT number for the specified country.
     """
+    logger.info(f"\n---> Generating VAT number for country: {country_code}")
     faker = Faker()
     vat_number = faker.random_number(digits=8, fix_len=True)
-    return f"{country_code}{vat_number}"
+    result = f"{country_code}{vat_number}"
+    logger.info(f"\n---> Generated VAT number: {result}")
+    return result
 
 def calculate_iban_checksum(country_code: str, bban: str) -> str:
     """
@@ -71,21 +75,23 @@ def generate_valid_czech_iban() -> str:
     """
     Vygeneruje validní IBAN pro Českou republiku.
     """
+    logger.info("\n---> Generating valid Czech IBAN")
     country_code = "CZ"
-    
+
     # Vygenerovat BBAN: bankovní kód (4 číslice) + prefix účtu (6 číslic) + hlavní číslo účtu (10 číslic)
     bank_code = f"{random.randint(1000, 9999)}"
     account_prefix = f"{random.randint(0, 999999):06}"  # Prefix může být 0-padded
     account_number = f"{random.randint(0, 9999999999):010}"  # Hlavní číslo účtu je 10 číslic
-    
+
     # Sestavit BBAN
     bban = f"{bank_code}{account_prefix}{account_number}"
-    
+
     # Vypočítat kontrolní číslice
     checksum = calculate_iban_checksum(country_code, bban)
-    
+
     # Sestavit celý IBAN
     iban = f"{country_code}{checksum}{bban}"
+    logger.info(f"\n---> Generated IBAN: {iban}")
     return iban
 
 # Testování
