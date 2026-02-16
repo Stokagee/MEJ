@@ -40,24 +40,22 @@ Test Negative Passengers Count Shows Error
 
 ### *** Notes Validation ***
 
-Test Too Long Note For Driver Shows Error
-    [Documentation]    Verify that too long note for driver (>2000 characters) displays error.
-    ...                Validation rule: StringLength(2000)
+Test Too Long Note For Driver Is Truncated
+    [Documentation]    Verify that too long note for driver (>2000 characters) is truncated to 2000.
+    ...                Validation rule: MaxLength(2000) - input is truncated
     [Tags]    ui    journey    negative    p1    validation    notes
     [Setup]    Open Browser And Navigate To Journey Form
     Fill Field With Generated Text    ${JOURNEYS_FORM_REQUEST_DRIVER_NOTE_INPUT}    2001
-    Click Save And Trigger Validation
-    Verify Validation Error Is Visible    ${NOTE_DRIVER_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${JOURNEYS_FORM_REQUEST_DRIVER_NOTE_INPUT}    2000
     [Teardown]    Close Browser
 
-Test Too Long Note For Operator Shows Error
-    [Documentation]    Verify that too long note for operator (>2000 characters) displays error.
-    ...                Validation rule: StringLength(2000)
+Test Too Long Note For Operator Is Truncated
+    [Documentation]    Verify that too long note for operator (>2000 characters) is truncated to 2000.
+    ...                Validation rule: MaxLength(2000) - input is truncated
     [Tags]    ui    journey    negative    p1    validation    notes
     [Setup]    Open Browser And Navigate To Journey Form
     Fill Field With Generated Text    ${JOURNEYS_FORM_REQUEST_OPERATOR_NOTE_INPUT}    2001
-    Click Save And Trigger Validation
-    Verify Validation Error Is Visible    ${NOTE_OPERATOR_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${JOURNEYS_FORM_REQUEST_OPERATOR_NOTE_INPUT}    2000
     [Teardown]    Close Browser
 
 ### *** Passenger Contact - Email Validation ***
@@ -121,12 +119,11 @@ Test Empty Phone Shows Error
 
 ### *** Passenger Contact - Max Length ***
 
-Test Too Long Phone Number Shows Error
-    [Documentation]    Verify that too long phone number (>64 characters) displays error.
-    ...                Validation rule: MaxLength(64)
+Test Too Long Phone Number Is Truncated
+    [Documentation]    Verify that too long phone number (>64 characters) is truncated to 64.
+    ...                Validation rule: MaxLength(64) - input is truncated
     [Tags]    ui    journey    negative    p1    validation    phone
     [Setup]    Open Browser And Navigate To Journey Form
     Fill Field With Generated Text    ${JOURNEYS_FORM_REQUEST_PASSENGERS_PHONE_INPUT}    65
-    Click Save And Trigger Validation
-    Verify Validation Error Is Visible    ${PHONE_VALIDATION}
+    Verify Field Value MaxLength Truncation    ${JOURNEYS_FORM_REQUEST_PASSENGERS_PHONE_INPUT}    64
     [Teardown]    Close Browser

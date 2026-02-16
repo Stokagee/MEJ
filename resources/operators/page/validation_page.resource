@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Page object for form validation - shared keywords for negative tests
 Resource         ../../../common.resource
+Resource         invoices_page.resource
 
 *** Keywords ***
 # === SETUP/TEARDOWN KEYWORDS ===
