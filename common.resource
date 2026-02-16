@@ -34,7 +34,6 @@ Resource    resources/operators/workflows/invoices.resource
 # *** API ***
 Resource    resources/api/tour_route_api.resource
 # *** DB ***
-Resource    resources/db/invoice_db.resource
 # *** Driver ***
 Resource    resources/drivers/page/main_page.resource
 Resource    resources/drivers/locators/main_locators.resource

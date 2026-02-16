@@ -1,8 +1,12 @@
-# MEJ Robot Framework Testing Project
+# CLAUDE.md
 
-Complete documentation for automated end-to-end tests of the MEJ web application (ride and transportation management system).
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Table of Contents
+# MEJ Robot Framework Test Project
+
+Complete documentation for automated end-to-end tests of the MEJ web application (journey and transport management system).
+
+## Contents
 
 - [Introduction](#introduction)
 - [Technologies and Prerequisites](#technologies-and-prerequisites)
@@ -11,7 +15,7 @@ Complete documentation for automated end-to-end tests of the MEJ web application
 - [Architecture](#architecture)
 - [Running Tests](#running-tests)
 - [TeamCity Integration](#teamcity-integration)
-- [Writing Tests](#writing-tests)
+- [Creating Tests](#creating-tests)
 - [Troubleshooting](#troubleshooting)
 - [Reference](#reference)
 
@@ -19,11 +23,11 @@ Complete documentation for automated end-to-end tests of the MEJ web application
 
 ## Introduction
 
-### What is this project
+### What is this Project
 
-This project contains automated end-to-end tests for the MEJ web application, which is a system for managing rides and transportation. Tests are written in Robot Framework using Playwright for browser automation.
+This project contains automated end-to-end tests for the MEJ web application, which is a journey and transport management system. Tests are written in Robot Framework using Playwright for browser automation.
 
-### Purpose of tests
+### Purpose of Tests
 
 - Verify correct application functionality after changes
 - Detect regression bugs
@@ -31,7 +35,7 @@ This project contains automated end-to-end tests for the MEJ web application, wh
 - Test complete workflows across different user roles
 - Verify API and database operations
 
-### Project statistics
+### Project Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -45,7 +49,7 @@ This project contains automated end-to-end tests for the MEJ web application, wh
 
 ## Technologies and Prerequisites
 
-### Technologies used
+### Technologies Used
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
@@ -58,16 +62,16 @@ This project contains automated end-to-end tests for the MEJ web application, wh
 | Docker Compose | - | Docker container management |
 | Microsoft SQL Server | - | Database (via ODBC Driver 17) |
 
-### Python libraries
+### Python Libraries
 
 | Library | Purpose |
 |---------|---------|
-| robotframework-faker | Generating random test data |
+| robotframework-faker | Generate random test data |
 | robotframework-databaselibrary | Database operations |
 | robotframework-requests | HTTP API testing |
-| geopy | Geographic distance calculation |
+| geopy | Geographic distance calculations |
 
-### System requirements
+### System Requirements
 
 For local test execution you need:
 
@@ -77,7 +81,7 @@ For local test execution you need:
 - **Docker and Docker Compose** - for containerized execution (optional)
 - **ODBC Driver 17 for SQL Server** - for database tests
 
-### Repository access
+### Repository Access
 
 You need access to the Git repository with the project. Contact the project administrator to obtain access.
 
@@ -85,16 +89,16 @@ You need access to the Git repository with the project. Contact the project admi
 
 ## Quick Start
 
-This section will guide you through the basic steps for your first test run.
+This section will guide you through the basic steps for first test execution.
 
-### Step 1: Clone the repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone <repo-url>
 cd MEJ
 ```
 
-### Step 2: Create virtual environment
+### Step 2: Create Virtual Environment
 
 **Windows:**
 ```bash
@@ -108,32 +112,29 @@ python -m venv venv
 source venv/bin/activate
 ```
 
-### Step 3: Install dependencies
+### Step 3: Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4: Install browser
+### Step 4: Install Browser
 
-This step downloads and installs the Chromium browser for testing:
-
+This step downloads and installs Chromium browser for testing:
 ```bash
 rfbrowser init
 ```
 
-Note: This step may take several minutes as browser binaries are downloaded.
+Note: This step may take several minutes as it downloads browser binaries.
 
-### Step 5: Configure environment
+### Step 5: Configure Environment
 
 Copy the template file with environment variables:
-
 ```bash
 cp .env.example .env
 ```
 
 Open the `.env` file and fill in your credentials:
-
 ```bash
 # --- Credentials - Admin ---
 MEJ_ADMIN_EMAIL=your-admin@email.com
@@ -148,16 +149,16 @@ MEJ_COMPANY_EMAIL=your-company@email.com
 MEJ_COMPANY_PASSWORD=your-password
 ```
 
-Important: Never commit the `.env` file to Git. It is already added to `.gitignore`.
+Important: Never save the `.env` file to Git. It is already added to `.gitignore`.
 
-### Step 6: Run tests
+### Step 6: Run Tests
 
 ```bash
 robot --outputdir results tests/
 ```
 
-After tests complete, you will find results in the `results/` folder:
-- `report.html` - comprehensive HTML report with results
+After test completion you will find results in the `results/` folder:
+- `report.html` - readable HTML report with results
 - `log.html` - detailed test execution log
 - `output.xml` - results in XML format
 
@@ -173,15 +174,15 @@ MEJ/
 |   |-- requirements.txt            # Python dependencies
 |   |-- Dockerfile                  # Docker image definition
 |   |-- docker-compose.yml          # Docker Compose configuration
-|   |-- .env.example                # Template file for environment variables
+|   |-- .env.example                # Environment variables template
 |   |-- .gitignore                  # Git ignored files
 |   |-- README.md                   # Basic documentation
 |
 +-- BASIC RESOURCES (root directory)
 |   |-- common.resource              # Shared keywords and imports
 |   |-- global_variables.resource    # Global variables
-|   |-- login_locators.resource      # Locators for login page
-|   |-- login_page.resource          # Page object for login page
+|   |-- login_locators.resource      # Login page locators
+|   |-- login_page.resource          # Login page page object
 |
 +-- resources/
 |   |-- api/                         # API keywords
@@ -190,19 +191,19 @@ MEJ/
 |   |-- Python_skripts.py            # Helper Python functions
 |   |
 |   |-- operators/                   # ROLE: Admin and Operator
-|   |   |-- locators/                # Locators for admin pages
-|   |   |-- page/                    # Page objects for admin pages
+|   |   |-- locators/                # Admin page locators
+|   |   |-- page/                    # Admin page page objects
 |   |   |-- workflows/               # Complex workflows
 |   |
 |   |-- drivers/                     # ROLE: Driver
-|   |   |-- locators/                # Locators for driver pages
-|   |   |-- page/                    # Page objects for driver pages
+|   |   |-- locators/                # Driver page locators
+|   |   |-- page/                    # Driver page page objects
 |   |
 |   |-- company/                     # ROLE: Company
-|   |   |-- locators/                # Locators for company pages
-|   |   |-- page/                    # Page objects for company pages
+|   |   |-- locators/                # Company page locators
+|   |   |-- page/                    # Company page page objects
 |   |
-|   |-- Register/                    # Registration of new entities
+|   |-- Register/                    # New entity registration
 |
 +-- tests/
     |-- Negative/                    # Negative tests (error validation)
@@ -215,9 +216,9 @@ MEJ/
     |-- te.robot                     # Tests with database
 ```
 
-### Meaning of main directories
+### Main Directory Purpose
 
-| Directory | Meaning |
+| Directory | Purpose |
 |-----------|---------|
 | `resources/` | All test resources (locators, page objects, workflows) |
 | `tests/` | Test files in .robot format |
@@ -229,9 +230,9 @@ MEJ/
 
 ### Page Object Model
 
-The project uses the **Page Object Model (POM)** pattern, which separates element definitions on the page from test logic.
+The project uses the **Page Object Model (POM)** pattern, which separates page element definitions from test logic.
 
-**Defined layers:**
+**Three Layers:**
 
 1. **Locators** - CSS selectors and XPath expressions for finding elements on the page
 2. **Page** - Keywords for interacting with individual pages
@@ -243,17 +244,17 @@ The project uses the **Page Object Model (POM)** pattern, which separates elemen
 - Tests are more readable and maintainable
 - Reusable keywords
 
-### User roles
+### User Roles
 
-The project tests the application from the perspective of three user roles:
+The project tests the application from three user role perspectives:
 
 | Role | Description | Folder in resources/ |
 |------|-------------|---------------------|
-| **Operator/Admin** | System administration, ride management, invoicing, packaging | `operators/` |
+| **Operator/Admin** | System administration, journey management, invoicing, packaging | `operators/` |
 | **Driver** | Driver who confirms rides, views assigned routes | `drivers/` |
-| **Company** | Transportation company, offers vehicles and services | `company/` |
+| **Company** | Transport company offering vehicles and services | `company/` |
 
-### Shared resources
+### Shared Resources
 
 **common.resource** - central file that:
 - Imports all necessary libraries (Browser, FakerLibrary, etc.)
@@ -262,7 +263,7 @@ The project tests the application from the perspective of three user roles:
 
 **global_variables.resource** - defines:
 - Application URL
-- Login credentials for individual roles
+- Login credentials for each role
 - Browser configuration (headless, window dimensions)
 - Database connection
 
@@ -270,29 +271,29 @@ The project tests the application from the perspective of three user roles:
 
 ## Running Tests
 
-### Local execution
+### Local Execution
 
-#### Run all tests
+#### Run All Tests
 
 ```bash
 robot --outputdir results tests/
 ```
 
-#### Run specific file
+#### Run Specific File
 
 ```bash
 robot --outputdir results tests/tour_route.robot
 robot --outputdir results tests/Operator/test_1.robot
 ```
 
-#### Run tests by directory
+#### Run Tests by Directory
 
 ```bash
 robot --outputdir results tests/Negative/
 robot --outputdir results tests/Registers/
 ```
 
-#### Run tests with specific tag
+#### Run Tests with Specific Tag
 
 ```bash
 robot --outputdir results --include smoke tests/
@@ -300,56 +301,56 @@ robot --outputdir results --include e2e tests/
 robot --outputdir results --include positive tests/
 ```
 
-#### Exclude tests with specific tag
+#### Exclude Tests with Specific Tag
 
 ```bash
 robot --outputdir results --exclude wip tests/
 ```
 
-#### Combine tags
+#### Combine Tags
 
 ```bash
 robot --outputdir results --include e2e --exclude wip tests/
 robot --outputdir results --include smoke --include p1 tests/
 ```
 
-### Docker execution
+### Docker Execution
 
-#### Build Docker image
+#### Build Docker Image
 
 ```bash
 docker-compose build
 ```
 
-#### Run all tests
+#### Run All Tests
 
 ```bash
 docker-compose run --rm rf-tests
 ```
 
-#### Run specific tests
+#### Run Specific Tests
 
 ```bash
 docker-compose run --rm rf-tests robot --include smoke tests/
 docker-compose run --rm rf-tests robot tests/tour_route.robot
 ```
 
-#### Run with custom variables
+#### Run with Custom Variables
 
 ```bash
 docker-compose run --rm -e MEJ_HEADLESS=False rf-tests
 ```
 
-### Test tags
+### Test Tags
 
-Tags serve for categorization and filtering of tests:
+Tags are used for categorizing and filtering tests:
 
-| Tag | Meaning | Usage example |
+| Tag | Meaning | Usage Example |
 |-----|---------|---------------|
 | `smoke` | Critical tests for quick system check | `--include smoke` |
-| `e2e` | End-to-end tests covering complete workflow | `--include e2e` |
+| `e2e` | End-to-end tests covering entire workflow | `--include e2e` |
 | `positive` | Positive test scenarios (expected success) | `--include positive` |
-| `negative` | Negative scenarios (testing error states) | `--include negative` |
+| `negative` | Negative scenarios (error state testing) | `--include negative` |
 | `p1` | Priority 1 (high, critical tests) | `--include p1` |
 | `p2` | Priority 2 (medium) | `--include p2` |
 | `wip` | Work in progress (unfinished tests) | `--exclude wip` |
@@ -358,29 +359,29 @@ Tags serve for categorization and filtering of tests:
 
 ## TeamCity Integration
 
-### How it works
+### How It Works
 
 Tests are designed to run in TeamCity CI/CD environment. Integration principle:
 
-1. **Docker container** - TeamCity runs tests in a Docker container
+1. **Docker container** - TeamCity runs tests in Docker container
 2. **Environment variables** - All configuration values are passed as environment variables
-3. **Headless mode** - Browser runs without graphical interface (default setting)
-4. **Outputs** - Test results are mounted to the `./results` folder
-5. **WIP exclusion** - Tests with the `wip` tag are automatically excluded
+3. **Headless mode** - Browser runs without GUI (default setting)
+4. **Outputs** - Test results are mounted to `./results` folder
+5. **WIP exclusion** - Tests with `wip` tag are automatically excluded
 
-### Setting up TeamCity project
+### TeamCity Project Setup
 
 #### Step 1: Create Build Configuration
 
-1. In TeamCity, create a new project or use an existing one
-2. Add a new Build Configuration named for example `MEJ_E2E_Tests`
+1. In TeamCity create a new project or use existing
+2. Add new Build Configuration with name e.g. `MEJ_E2E_Tests`
 3. Set VCS root to the test repository
 
 #### Step 2: Configure Build Steps
 
 **Type:** Command Line or Docker Compose
 
-**Working directory:** root directory of MEJ project
+**Working directory:** MEJ project root directory
 
 **Script:**
 ```bash
@@ -408,11 +409,11 @@ docker-compose run --rm \
   rf-tests
 ```
 
-#### Step 3: Configure parameters
+#### Step 3: Configure Parameters
 
 In TeamCity add the following parameters (Settings > Parameters):
 
-| Parameter | Type | Required | Default value |
+| Parameter | Type | Required | Default Value |
 |-----------|------|----------|---------------|
 | `env.MEJ_URL` | Text | Yes | `https://shared-testing-2.continero.com/` |
 | `env.MEJ_API_URL` | Text | No | `https://shared-testing-2.continero.com` |
@@ -433,12 +434,11 @@ In TeamCity add the following parameters (Settings > Parameters):
 #### Step 4: Configure Artifact Paths
 
 In General Settings section set Artifact Paths:
-
 ```
 results/** => results
 ```
 
-This ensures that test results (report.html, log.html) will be available after the build completes.
+This ensures test results (report.html, log.html) are available after build completion.
 
 #### Step 5: Configure Triggers
 
@@ -446,11 +446,11 @@ Recommended triggers:
 
 **VCS Trigger:**
 - Runs tests after each commit
-- Quiet period: 60 seconds (waiting for commit accumulation)
+- Quiet period: 60 seconds (wait for commit accumulation)
 
 **Schedule Trigger:**
-- Runs tests every morning (for example at 02:00)
-- Allows detecting problems from the previous day
+- Runs tests every morning (e.g. at 02:00)
+- Allows detecting problems from previous day
 
 **Dependency Trigger:**
 - Runs tests after successful application deployment
@@ -461,7 +461,7 @@ In Failure Conditions section enable:
 - **Test failures** - mark build as failed if any test fails
 - **Build log contains** - add text `FAIL` as failure indicator
 
-### Complete configuration example
+### Complete Configuration Example
 
 ```yaml
 # Build Configuration: MEJ_E2E_Tests
@@ -505,7 +505,7 @@ Test failures: Enable
 Build log contains: FAIL
 ```
 
-### Dynamic configuration by branch
+### Dynamic Configuration by Branch
 
 For different branches you can set different URLs and databases:
 
@@ -525,9 +525,9 @@ env.MEJ_DB_NAME = MEJ-staging
 
 ---
 
-## Writing Tests
+## Creating Tests
 
-### Basic test file structure
+### Basic Test File Structure
 
 ```robotframework
 *** Settings ***
@@ -539,7 +539,7 @@ ${pick_up_time}        10:00
 ${destination}         Prague
 
 *** Test Cases ***
-Name of test scenario
+Test scenario name
     [Documentation]    Description of what the test verifies
     [Tags]             e2e    positive    p1
     Given I am logged in as admin
@@ -547,37 +547,32 @@ Name of test scenario
     Then I see list of rides
 ```
 
-### Best practices
+### Best Practices
 
-1. **Always use common.resource** - ensures you have access to all libraries and keywords
-
-2. **Use descriptive test names** - test name should say what is being tested, not how
-
+1. **Always use common.resource** - ensures access to all libraries and keywords
+2. **Use descriptive test names** - test name should say what is tested, not how
 3. **Add documentation and tags** - every test should have `[Documentation]` and `[Tags]`
-
 4. **Utilize POM** - separate locators, page objects and workflows into appropriate files
-
-5. **Do not repeat code** - move repeating sequences to workflow files
+5. **Don't repeat code** - move repeating sequences to workflow files
 
 ---
 
 ## Troubleshooting
 
-### Common errors and solutions
+### Common Errors and Solutions
 
 | Error | Cause | Solution |
 |-------|-------|----------|
-| `Browser not found` | Playwright browser is not installed | Run `rfbrowser init` |
-| `Timeout on element` | Element did not load within time limit | Increase `${TIMEOUT}` in `global_variables.resource` |
-| `Invalid credentials` | Wrong login credentials | Check the `.env` file |
-| `Docker permission denied` | User does not have Docker permissions | Add user to docker group |
-| `Element not found` | Selector on page has changed | Update locators |
+| `Browser not found` | Playwright browser not installed | Run `rfbrowser init` |
+| `Timeout on element` | Element didn't load within time limit | Increase `${TIMEOUT}` in `global_variables.resource` |
+| `Invalid credentials` | Wrong login credentials | Check `.env` file |
+| `Docker permission denied` | User doesn't have Docker permissions | Add user to docker group |
+| `Element not found` | Selector changed on page | Update locators |
 | `Database connection failed` | Wrong DB credentials or connection | Check DB parameters in `.env` |
 
-### Debug mode
+### Debug Mode
 
 For more detailed output during testing:
-
 ```bash
 robot --loglevel DEBUG --outputdir results tests/
 ```
@@ -592,23 +587,23 @@ And in `common.resource` uncomment:
 DebugLibrary
 ```
 
-### Logs and screenshots
+### Logs and Screenshots
 
-After each test run you will find in the `results/` folder:
+After each test run you find in `results/` folder:
 
-- **report.html** - comprehensive HTML report with test results
+- **report.html** - readable HTML report with test results
 - **log.html** - detailed test execution log including screenshots
 - **output.xml** - results in XML format (for further processing)
 
-When a test fails, a screenshot and HTML page state are automatically saved.
+On test failure, screenshot and HTML page state are automatically saved.
 
 ---
 
 ## Reference
 
-### List of environment variables
+### Environment Variables List
 
-| Variable | Meaning | Default value |
+| Variable | Meaning | Default Value |
 |----------|---------|---------------|
 | `MEJ_URL` | URL of tested application | `https://shared-testing-2.continero.com/` |
 | `MEJ_API_URL` | API base URL | `https://shared-testing-2.continero.com` |
@@ -626,7 +621,7 @@ When a test fails, a screenshot and HTML page state are automatically saved.
 | `MEJ_DB_USER` | Database user | - |
 | `MEJ_DB_PASSWORD` | Database password | - |
 
-### Robot Framework global variables
+### Robot Framework Global Variables
 
 | Variable | Meaning | Source |
 |----------|---------|--------|
@@ -637,7 +632,7 @@ When a test fails, a screenshot and HTML page state are automatically saved.
 | `${WIDTH}` | Browser window width | `1800` |
 | `${HEIGHT}` | Browser window height | `900` |
 
-### Useful commands
+### Useful Commands
 
 | Command | Description |
 |---------|-------------|
@@ -651,7 +646,7 @@ When a test fails, a screenshot and HTML page state are automatically saved.
 | `docker-compose build` | Build Docker image |
 | `docker-compose run --rm rf-tests` | Run tests in Docker |
 
-### Documentation links
+### Documentation Links
 
 - [Robot Framework User Guide](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html)
 - [Robot Framework Browser](https://marketsquare.github.io/robotframework-browser/Browser.html)
@@ -661,10 +656,10 @@ When a test fails, a screenshot and HTML page state are automatically saved.
 
 ## Contact and Support
 
-For questions about this project, contact the repository administrator.
+For questions about this project contact the repository administrator.
 
-This documentation was created for new team members to help them quickly start working with the testing framework.
+Documentation was created for new team members to quickly start working with the testing framework.
 
-- Generated by AI.
+- Generated by AI and checked by me.
 
 - Dušan.

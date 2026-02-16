@@ -1,4 +1,5 @@
 *** Settings ***
+Resource    ../../global_variables.resource
 Resource    Variables_register.resource
 Library    ../../resources/Python_skripts.py
 Library    Browser
