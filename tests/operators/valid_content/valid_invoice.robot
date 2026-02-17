@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Positive tests for validating content on the Invoice page.
 ...              Tests proper display of components, filters and form.
-Resource    ../../common.resource
+Resource    ../../../common.resource
 
 *** Variables ***
 ${TEST_VAT_NUMBER}       CZ12345678
@@ -18,28 +18,28 @@ Validate Filter Panel Display
     [Documentation]    Verify that filter panel is properly displayed on the invoices page.
     [Tags]    ui    invoice    positive    p2    filter
     [Setup]    Open Browser And Navigate To Invoices Page
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_PANEL}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_DATE_DROPDOWN}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_VIES_STATE_DROPDOWN}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_VAT_NUMBER_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_SHOW_DUPLICITIES_CHECKBOX}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_PANEL}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_DATE_DROPDOWN}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_VIES_STATE_DROPDOWN}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_VAT_NUMBER_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_SHOW_DUPLICITIES_CHECKBOX}
     [Teardown]    Close Browser
 
 Validate Filter Buttons Display
     [Documentation]    Verify that filter buttons (Search, Reset) are properly displayed.
     [Tags]    ui    invoice    positive    p2    filter    buttons
     [Setup]    Open Browser And Navigate To Invoices Page
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_SEARCH_BUTTON}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_RESET_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_SEARCH_BUTTON}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_RESET_BUTTON}
     [Teardown]    Close Browser
 
 Validate Export Buttons Display
     [Documentation]    Verify that export buttons (ZIP, XML, CSV) are properly displayed.
     [Tags]    ui    invoice    positive    p2    export    buttons
     [Setup]    Open Browser And Navigate To Invoices Page
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_ZIP_BUTTON}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_XML_BUTTON}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_CSV_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_ZIP_BUTTON}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_XML_BUTTON}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_CSV_BUTTON}
     [Teardown]    Close Browser
 
 ### *** Filter Functionality Validation ***
@@ -48,8 +48,10 @@ Validate VAT Number Filter Filling
     [Documentation]    Test that VAT number filter correctly accepts values.
     [Tags]    ui    invoice    positive    p2    filter    vat_number
     [Setup]    Open Browser And Navigate To Invoices Page
+    # Wait for page to be fully loaded (Blazor might reload)
+    Wait For Load State    networkidle
     Fill Invoice VAT Number Filter    ${TEST_VAT_NUMBER}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FILTER_VAT_NUMBER_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FILTER_VAT_NUMBER_INPUT}    value    message=VAT Number filter input was not filled correctly!
     Should Be Equal    ${value}    ${TEST_VAT_NUMBER}    msg=VAT Number was not filled correctly!
     [Teardown]    Close Browser
 
@@ -60,7 +62,7 @@ Validate Filter Search Function
     Fill Invoice VAT Number Filter    ${TEST_VAT_NUMBER}
     Apply Invoice Filter
     # Verify that page still shows filter panel (no error occurred)
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_PANEL}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_PANEL}
     [Teardown]    Close Browser
 
 ### *** Invoice Table Validation ***
@@ -69,14 +71,14 @@ Validate Invoice Table Display
     [Documentation]    Verify that invoice table is properly displayed.
     [Tags]    ui    invoice    positive    p2    table
     [Setup]    Open Browser And Navigate To Invoices Page
-    Wait For Elements State    ${ADMIN_INVOICES_TABLE}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_TABLE}
     [Teardown]    Close Browser
 
 Validate New Invoice Button Display
     [Documentation]    Verify that button for creating new invoice is visible.
     [Tags]    ui    invoice    positive    p2    new    button
     [Setup]    Open Browser And Navigate To Invoices Page
-    Wait For Elements State    ${ADMIN_INVOICES_NEW_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_NEW_BUTTON}
     [Teardown]    Close Browser
 
 ### *** Invoice Form Validation ***
@@ -86,8 +88,8 @@ Validate Invoice Form Opening
     [Tags]    ui    invoice    positive    p2    form    open
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_SAVE_BUTTON}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_CANCEL_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_SAVE_BUTTON}
+    Wait Element State    ${ADMIN_INVOICES_FORM_CANCEL_BUTTON}
     [Teardown]    Close Browser
 
 Validate Invoice Detail Fields Display
@@ -95,8 +97,8 @@ Validate Invoice Detail Fields Display
     [Tags]    ui    invoice    positive    p2    form    detail
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_ORDER_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_DATE_PICKER}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_ORDER_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_DATE_PICKER}
     [Teardown]    Close Browser
 
 Validate Driver Detail Fields Display
@@ -104,11 +106,11 @@ Validate Driver Detail Fields Display
     [Tags]    ui    invoice    positive    p2    form    driver
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_NAME_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_NAME_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}
     [Teardown]    Close Browser
 
 Validate Address Fields Display
@@ -116,10 +118,10 @@ Validate Address Fields Display
     [Tags]    ui    invoice    positive    p2    form    address
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_STREET_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_CITY_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_ZIP_INPUT}    visible    timeout=${TIMEOUT}
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_COUNTRY_DROPDOWN}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_STREET_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_CITY_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_ZIP_INPUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_COUNTRY_DROPDOWN}
     [Teardown]    Close Browser
 
 ### *** Form Input Validation ***
@@ -130,7 +132,7 @@ Validate Business Number Filling
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Clear And Fill Invoice Field    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    ${TEST_BUSINESS_NO}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    value
     Should Be Equal    ${value}    ${TEST_BUSINESS_NO}    msg=Business Number was not filled correctly!
     [Teardown]    Close Browser
 
@@ -140,7 +142,7 @@ Validate VAT Number Filling
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Clear And Fill Invoice Field    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    ${TEST_VAT_NUMBER}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    value
     Should Be Equal    ${value}    ${TEST_VAT_NUMBER}    msg=VAT Number was not filled correctly!
     [Teardown]    Close Browser
 
@@ -150,7 +152,7 @@ Validate Business Name Filling
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Clear And Fill Invoice Field    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    ${TEST_BUSINESS_NAME}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    value
     Should Be Equal    ${value}    ${TEST_BUSINESS_NAME}    msg=Business Name was not filled correctly!
     [Teardown]    Close Browser
 
@@ -160,7 +162,7 @@ Validate Email Filling
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Clear And Fill Invoice Field    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    ${TEST_EMAIL}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    value
     Should Be Equal    ${value}    ${TEST_EMAIL}    msg=Email was not filled correctly!
     [Teardown]    Close Browser
 

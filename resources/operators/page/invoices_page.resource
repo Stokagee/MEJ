@@ -14,20 +14,20 @@ Open Browser And Navigate To Invoices Page
     Verify Admin Login Success
     Log Action    Navigating to Invoices page
     Go To    ${URL}invoices
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_PANEL}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_PANEL}
     Log Workflow End    Navigate to Invoices Page
 
 Open New Invoice Form
     [Documentation]    Opens new invoice form
     Log Action    Opening new invoice form
     Click Element    ${ADMIN_INVOICES_NEW_BUTTON}    Clicking New Invoice
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_SAVE_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FORM_SAVE_BUTTON}
 
 # === VALIDATION KEYWORDS ===
 Clear And Fill Invoice Field
     [Documentation]    Clears field and fills new value, triggers validation with Tab
     [Arguments]    ${locator}    ${value}
-    Wait For Elements State    ${locator}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${locator}
     Click    ${locator}
     Clear Text    ${locator}
     IF    "${value}" != "${EMPTY}"
@@ -47,7 +47,7 @@ Verify Invoice ValidationError Is Visible
     [Documentation]    Verifies that validation error is visible
     [Arguments]    ${validation_locator}=${ADMIN_INVOICES_VALIDATION_ERROR_TEXTAREA}
     TRY
-        Wait For Elements State    ${validation_locator}    visible    timeout=5s
+        Wait Element State    ${validation_locator}
         ${text}=    Get Text    ${validation_locator}
         Should Not Be Empty    ${text}    Validation error should contain text
         Log    Validation error displayed: ${text}    console=${LOG_TO_CONSOLE}

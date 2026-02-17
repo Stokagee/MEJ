@@ -64,9 +64,11 @@ MEJ/
 │   ├── operators/         # Operator role
 │   └── libraries/         # Python knihovny
 └── tests/                 # Testovací soubory
-    ├── Negative/          # Negativní testy
-    ├── Operator/          # Operátor testy
-    └── Valid_content/     # Validační testy
+    ├── operators/         # Operátor testy
+    │   ├── negative_content/  # Negativní testy
+    │   └── valid_content/     # Validační testy
+    ├── tour_route.robot   # E2E test tras
+    └── package.robot      # E2E test balíčků
 ```
 
 ## Environment proměnné

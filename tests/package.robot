@@ -58,7 +58,7 @@ Create Package Candidate With Multiple Journeys And Add First Journey By Order I
     Create Package
 
     # 5. Driver selection workflow
-    Navigate To Packages Tab And Open Edit
+    Navigate To Packages Tab And Open Edit By Name    ${package_candi_name}
     Navigate To Driver Selection Tab In Packages And Search Drivers
     Select Driver And Company In Packages And Send Request
 

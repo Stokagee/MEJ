@@ -2,7 +2,7 @@
 Documentation    Negative tests for validating Invoice form.
 ...              Tests field validation, filters and export functionality.
 ...              Follows POM structure - uses keywords from invoices_page.resource
-Resource         ../../common.resource
+Resource         ../../../common.resource
 
 *** Variables ***
 ${INVALID_EMAIL_1}           invalid@
@@ -136,7 +136,7 @@ Test Filter By VAT Number
     Fill Invoice VAT Number Filter    CZ12345678
     Apply Invoice Filter
     # Verify that page does not show error
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_PANEL}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_PANEL}
     [Teardown]    Close Browser
 
 ### *** Export Tests ***
@@ -145,21 +145,21 @@ Test Download Invoices ZIP Button Is Clickable
     [Documentation]    Verify that ZIP download button is active and clickable.
     [Tags]    ui    invoice    positive    p2    export
     [Setup]    Open Browser And Navigate To Invoices Page
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_ZIP_BUTTON}    enabled    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_ZIP_BUTTON}    enabled
     [Teardown]    Close Browser
 
 Test Download Invoices XML Button Is Clickable
     [Documentation]    Verify that Pohoda XML download button is active and clickable.
     [Tags]    ui    invoice    positive    p2    export
     [Setup]    Open Browser And Navigate To Invoices Page
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_XML_BUTTON}    enabled    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_XML_BUTTON}    enabled
     [Teardown]    Close Browser
 
 Test Download Invoices CSV Button Is Clickable
     [Documentation]    Verify that CSV download button is active and clickable.
     [Tags]    ui    invoice    positive    p2    export
     [Setup]    Open Browser And Navigate To Invoices Page
-    Wait For Elements State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_CSV_BUTTON}    enabled    timeout=${TIMEOUT}
+    Wait Element State    ${ADMIN_INVOICES_FILTER_DOWNLOAD_CSV_BUTTON}    enabled
     [Teardown]    Close Browser
 
 ### *** Invoice Items Validation ***
@@ -175,5 +175,5 @@ Test No Invoice Items Shows Error
     Click Invoice Save And Trigger Validation
     # Verify form wasn't submitted by checking Save button is still visible
     # (form stays open when validation fails)
-    Wait For Elements State    ${ADMIN_INVOICES_FORM_SAVE_BUTTON}    visible    timeout=5s
+    Wait Element State    ${ADMIN_INVOICES_FORM_SAVE_BUTTON}
     [Teardown]    Close Browser

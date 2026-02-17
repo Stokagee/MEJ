@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../common.resource
+Resource    ../../../common.resource
 
 *** Variables ***
 ${passengers_count}    3

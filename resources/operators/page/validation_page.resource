@@ -16,13 +16,13 @@ Open Browser And Navigate To Journey Form
     Verify Admin Login Success
     Log Action    Navigating to Journeys page
     Navigate To Journeys Page
-    Wait For Elements State    ${JOURNEYS_CREATE_NEW_JOURNEY_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${JOURNEYS_CREATE_NEW_JOURNEY_BUTTON}
     Log Action    Opening new journey form
     Open New Journey Form
-    Wait For Elements State    ${JOURNEYS_EDIT_ALL_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${JOURNEYS_EDIT_ALL_BUTTON}
     Log Action    Clicking Edit All button
     Click Edit All Button
-    Wait For Elements State    ${JOURNEYS_FORM_REQUEST_PASSENGERS_INPUT}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${JOURNEYS_FORM_REQUEST_PASSENGERS_INPUT}
     Log Workflow End    Navigate to Journey Form
 
 Close Journey Form Safely
@@ -32,7 +32,7 @@ Close Journey Form Safely
         ${state}=    Get Element States    ${JOURNEYS_CLOSE_NEW_JOURNEY_BUTTON}
         IF    "visible" in $state
             Click    ${JOURNEYS_CLOSE_NEW_JOURNEY_BUTTON}
-            Wait For Elements State    ${JOURNEYS_CLOSE_NEW_JOURNEY_BUTTON}    hidden    timeout=3s
+            Wait Element State    ${JOURNEYS_CLOSE_NEW_JOURNEY_BUTTON}    hidden
         END
     EXCEPT
         Log    Form is not open or already closed    console=${LOG_TO_CONSOLE}
@@ -43,7 +43,7 @@ Close Journey Form Safely
 Clear And Fill Field
     [Documentation]    Clears field and fills new value, triggers validation with Tab
     [Arguments]    ${locator}    ${value}
-    Wait For Elements State    ${locator}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${locator}
     Click    ${locator}
     Clear Text    ${locator}
     IF    "${value}" != "${EMPTY}"
@@ -63,7 +63,7 @@ Verify Validation Error Is Visible
     [Documentation]    Verifies that validation error is visible and contains text
     [Arguments]    ${validation_locator}
     TRY
-        Wait For Elements State    ${validation_locator}    visible    timeout=5s
+        Wait Element State    ${validation_locator}
         ${text}=    Get Text    ${validation_locator}
         Should Not Be Empty    ${text}    Validation error should contain text
         Log    Validation error displayed: ${text}    console=${LOG_TO_CONSOLE}
@@ -76,7 +76,7 @@ Verify Validation Error Is Visible
 Verify Field Has Invalid State
     [Documentation]    Verifies that field has is-invalid class (Blazorise pattern)
     [Arguments]    ${field_locator}
-    Wait For Elements State    ${field_locator}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${field_locator}
     ${classes}=    Get Attribute    ${field_locator}    class
     Should Contain    ${classes}    ${VALIDATION_INVALID_CLASS}    Field should have is-invalid class
     Log Verification    Field has invalid state
@@ -103,8 +103,8 @@ Navigate To Journeys Page Without Opening Form
     Verify Admin Login Success
     Log Action    Navigating to Journeys page
     Navigate To Journeys Page
-    Wait For Elements State    ${JOURNEYS_CREATE_NEW_JOURNEY_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${JOURNEYS_CREATE_NEW_JOURNEY_BUTTON}
     Log Action    Opening new journey form
     Open New Journey Form
-    Wait For Elements State    ${JOURNEYS_EDIT_ALL_BUTTON}    visible    timeout=${TIMEOUT}
+    Wait Element State    ${JOURNEYS_EDIT_ALL_BUTTON}
     Log Workflow End    Navigate to Journeys Page (no form)

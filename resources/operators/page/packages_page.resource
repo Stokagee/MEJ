@@ -78,9 +78,24 @@ Click Save Candidate Data
     Click Element    ${PACKAGES_CANDIDATE_SAVE}    saving data for candidate in package candidate detail
 
 Click Create Package Candidate
-    [Documentation]    Clicks Create Package Candidate and opens new page in browser
+    [Documentation]    Clicks Create Package Candidate with retry.
+    ...                Button may not be ready immediately after booking, so retry booking if needed.
     Log Action    Clicking Create Package Candidate
-    Click Element    ${JOURNEY_FORM_REQUEST_CREATE_PACKAGE_CANDIDATE_BUTTON}    clicking Create Package Candidate
+    VAR    ${success}    ${FALSE}
+
+    WHILE    ${success} == ${FALSE}    limit=${TIMEOUT}
+        TRY
+            Wait Element State    ${JOURNEY_FORM_REQUEST_CREATE_PACKAGE_CANDIDATE_BUTTON}    visible    5    Create Package Candidate button
+            Click    ${JOURNEY_FORM_REQUEST_CREATE_PACKAGE_CANDIDATE_BUTTON}
+            VAR    ${success}    ${TRUE}
+            Log    \n---> Successfully clicked Create Package Candidate    console=${LOG_TO_CONSOLE}
+        EXCEPT
+            Log    \n---> Create Package Candidate button not ready, retrying booking...    console=${LOG_TO_CONSOLE}
+            Click New Booking
+            Click Welcome Message Sent
+            Sleep    2
+        END
+    END
 
 
 Navigate To Packages Tab
@@ -93,6 +108,33 @@ Open First Edit In Packages
     Log Action    Opening first edit in packages
     Click Element    ${PACKAGES_1ST_EDIT_BUTTON}    opening first edit in packages
 
+Open Edit For Package By Name
+    [Documentation]    Opens edit for specific package by name with retry.
+    ...                Refreshes page if package not found (might not be loaded yet).
+    [Arguments]    ${package_name}
+    Log Action    Opening edit for package: ${package_name}
+    ${locator}=    Format String    ${PACKAGES_EDIT_BY_NAME}    ${package_name}
+    VAR    ${success}    ${FALSE}
+    VAR    ${attempts}    ${0}
+
+    WHILE    ${success} == ${FALSE}    limit=${TIMEOUT}
+        VAR    ${attempts}    ${attempts + 1}
+        TRY
+            Click Element    ${locator}    Package edit button for '${package_name}'
+            VAR    ${success}    ${TRUE}
+            Log    \n---> Successfully opened package: ${package_name}    console=${LOG_TO_CONSOLE}
+        EXCEPT    AS    ${err}
+            Log    \n---> Attempt ${attempts}: Package '${package_name}' not found, refreshing page...    console=${LOG_TO_CONSOLE}
+            Sleep    2
+            Refresh Page
+            Sleep    2
+            IF    ${attempts} >= 5
+                Take Screenshot
+                Fail    Package with name '${package_name}' not found after ${attempts} attempts. ERROR: ${err}
+            END
+        END
+    END
+
 Navigate To Driver Selection Tab In Packages
     [Documentation]    Navigates to driver selection tab in packages
     Log Action    Navigating to Driver Selection tab in packages
@@ -104,14 +146,16 @@ Search Drivers In Packages
     Click Element    ${PACKAGES_DRIVER_SELECTION_SEARCH_BUTTON}    clicking search button to find drivers in packages
 
 Check Driver In Packages
-    [Documentation]    Checks driver in packages
+    [Documentation]    Checks driver checkbox in packages
     Log Action    Checking driver in packages
-    Click Element    ${PACKAGES_DRIVER_SELECTION_DRIVER_CHECKBOX}    checking driver in packages
+    Wait Element Ready    ${PACKAGES_DRIVER_SELECTION_DRIVER_CHECKBOX}
+    Check Checkbox    ${PACKAGES_DRIVER_SELECTION_DRIVER_CHECKBOX}
 
 Check Shuttle Company In Packages
-    [Documentation]    Checks shuttle company in packages
+    [Documentation]    Checks shuttle company checkbox in packages
     Log Action    Checking shuttle company in packages
-    Click Element    ${PACKAGES_DRIVER_SELECTION_SHUTTLE_COMPANY_CHECKBOX}    checking shuttle company in packages
+    Wait Element Ready    ${PACKAGES_DRIVER_SELECTION_SHUTTLE_COMPANY_CHECKBOX}
+    Check Checkbox    ${PACKAGES_DRIVER_SELECTION_SHUTTLE_COMPANY_CHECKBOX}
 
 Click Request Now In Packages
     [Documentation]    Clicks Request Now button in packages

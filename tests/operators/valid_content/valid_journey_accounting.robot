@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../common.resource
+Resource    ../../../common.resource
 
 *** Variables ***
 ${bokun_amount}    1000

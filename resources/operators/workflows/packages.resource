@@ -53,6 +53,12 @@ Navigate To Packages Tab And Open Edit
     Navigate To Packages Tab
     Open First Edit In Packages
 
+Navigate To Packages Tab And Open Edit By Name
+    [Documentation]    Navigates to packages tab and opens edit for specific package by name
+    [Arguments]    ${package_name}
+    Navigate To Packages Tab
+    Open Edit For Package By Name    ${package_name}
+
 Navigate To Driver Selection Tab In Packages And Search Drivers
     [Documentation]    Navigates to Driver Selection tab in packages and searches drivers
     Navigate To Driver Selection Tab In Packages
@@ -126,16 +132,10 @@ Complete Package Workflow With Company And Driver
     ${company_browser}    ${company_context}    ${company_page}=
     ...    Login As Company    ${company_email}    ${company_password}
     Navigate To Requested Packages Page As Company
-    requested_packages.Click Available Button
-    requested_packages.Select Random Car
-    requested_packages.Select Random Driver
-    requested_packages.Enter BID Price As Company    ${company_bid_price}
-    requested_packages.Click Save Button
+    requested_packages.Process All Available Packages As Company    ${company_bid_price}
     # Driver part
     ${driver_browser}    ${driver_context}    ${driver_page}=
     ...    Open New Browser Session As Driver    ${driver_email}    ${driver_password}
     Navigate To Driver Requested Packages Page
-    Check BID Checkbox In Requested Packages
-    Enter BID Price As Driver In Packages    ${driver_bid_price}
-    Click Available Button As Driver
+    Check BID Checkbox And Confirm All Packages    ${driver_bid_price}
     Sleep    5s
