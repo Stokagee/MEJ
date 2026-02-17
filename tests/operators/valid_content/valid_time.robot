@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../../common.resource
+Resource    ../../../common.resource
 
 *** Variables ***
 ${pick_up_time}        10:00

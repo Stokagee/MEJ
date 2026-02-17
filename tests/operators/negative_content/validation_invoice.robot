@@ -2,7 +2,7 @@
 Documentation    Negative tests for validating Invoice form.
 ...              Tests field validation, filters and export functionality.
 ...              Follows POM structure - uses keywords from invoices_page.resource
-Resource         ../../common.resource
+Resource         ../../../common.resource
 
 *** Variables ***
 ${INVALID_EMAIL_1}           invalid@

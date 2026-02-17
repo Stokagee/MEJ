@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Positive tests for validating content on the Invoice page.
 ...              Tests proper display of components, filters and form.
-Resource    ../../common.resource
+Resource    ../../../common.resource
 
 *** Variables ***
 ${TEST_VAT_NUMBER}       CZ12345678

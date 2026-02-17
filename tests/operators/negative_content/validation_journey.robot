@@ -2,7 +2,7 @@
 Documentation    Negative tests for validating Journey form.
 ...              Tests empty required fields, exceeding maximum length and invalid formats.
 ...              Follows POM structure - uses keywords from validation_page.resource
-Resource         ../../common.resource
+Resource         ../../../common.resource
 
 *** Variables ***
 ${INVALID_EMAIL_1}           invalid@
