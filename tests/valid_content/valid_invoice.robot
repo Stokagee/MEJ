@@ -48,9 +48,10 @@ Validate VAT Number Filter Filling
     [Documentation]    Test that VAT number filter correctly accepts values.
     [Tags]    ui    invoice    positive    p2    filter    vat_number
     [Setup]    Open Browser And Navigate To Invoices Page
+    # Wait for page to be fully loaded (Blazor might reload)
+    Wait For Load State    networkidle
     Fill Invoice VAT Number Filter    ${TEST_VAT_NUMBER}
-    Sleep    0.5
-    ${value}=    Get Element Text  ${ADMIN_INVOICES_FILTER_VAT_NUMBER_INPUT}   
+    ${value}=    Get Property    ${ADMIN_INVOICES_FILTER_VAT_NUMBER_INPUT}    value    message=VAT Number filter input was not filled correctly!
     Should Be Equal    ${value}    ${TEST_VAT_NUMBER}    msg=VAT Number was not filled correctly!
     [Teardown]    Close Browser
 
@@ -131,7 +132,7 @@ Validate Business Number Filling
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Clear And Fill Invoice Field    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    ${TEST_BUSINESS_NO}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FORM_BUSINESS_NO_INPUT}    value
     Should Be Equal    ${value}    ${TEST_BUSINESS_NO}    msg=Business Number was not filled correctly!
     [Teardown]    Close Browser
 
@@ -141,7 +142,7 @@ Validate VAT Number Filling
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Clear And Fill Invoice Field    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    ${TEST_VAT_NUMBER}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FORM_VAT_NO_INPUT}    value
     Should Be Equal    ${value}    ${TEST_VAT_NUMBER}    msg=VAT Number was not filled correctly!
     [Teardown]    Close Browser
 
@@ -151,7 +152,7 @@ Validate Business Name Filling
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Clear And Fill Invoice Field    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    ${TEST_BUSINESS_NAME}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FORM_BUSINESS_NAME_INPUT}    value
     Should Be Equal    ${value}    ${TEST_BUSINESS_NAME}    msg=Business Name was not filled correctly!
     [Teardown]    Close Browser
 
@@ -161,7 +162,7 @@ Validate Email Filling
     [Setup]    Open Browser And Navigate To Invoices Page
     Open New Invoice Form
     Clear And Fill Invoice Field    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    ${TEST_EMAIL}
-    ${value}=    Get Attribute    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    value
+    ${value}=    Get Property    ${ADMIN_INVOICES_FORM_EMAIL_INPUT}    value
     Should Be Equal    ${value}    ${TEST_EMAIL}    msg=Email was not filled correctly!
     [Teardown]    Close Browser
 

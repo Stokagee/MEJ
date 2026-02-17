@@ -89,19 +89,6 @@ Log Verification
 
 # === WAIT KEYWORDS ===
 
-Wait Element State
-    [Documentation]    Waits for element to reach specified state with error handling.
-    ...                Use for: waiting for elements to be visible, enabled, attached, stable, or hidden.
-    ...                States: visible (default), enabled, attached, stable, hidden
-    ...                Example: Wait Element State    ${LOCATOR}    visible    ${TIMEOUT}    Filter panel
-    [Arguments]    ${selector}    ${state}=visible    ${timeout}=${TIMEOUT}    ${context_name}=${EMPTY}
-    TRY
-        Wait For Elements State    ${selector}    ${state}    timeout=${timeout}
-    EXCEPT    AS    ${err}
-        Take Screenshot
-        VAR    ${msg}    Failed waiting for element '${context_name}' --> | selector='${selector}' | state='${state}' | ERROR: ${err}
-        Fail    ${msg}
-    END
 
 # === CORE KEYWORDS ===
 
@@ -118,6 +105,20 @@ Initialize Browser Session
     ${page_ids}=    Get Page Ids    ACTIVE  # ← ZMĚNA: pro konkrétní browser
     ${page_id}=        Get From List    ${page_ids}    -1     
     RETURN    ${browser_id}    ${context_id}    ${page_id}
+
+Wait Element State
+    [Documentation]    Waits for element to reach specified state with error handling.
+    ...                Use for: waiting for elements to be visible, enabled, attached, stable, or hidden.
+    ...                States: visible (default), enabled, attached, stable, hidden
+    ...                Example: Wait Element State    ${LOCATOR}    visible    ${TIMEOUT}    Filter panel
+    [Arguments]    ${selector}    ${state}=visible    ${timeout}=${TIMEOUT}    ${context_name}=${EMPTY}
+    TRY
+        Wait For Elements State    ${selector}    ${state}    timeout=${timeout}
+    EXCEPT    AS    ${err}
+        Take Screenshot
+        VAR    ${msg}    Failed waiting for element '${context_name}' --> | selector='${selector}' | state='${state}' | ERROR: ${err}
+        Fail    ${msg}
+    END
 
 Click Element
     [Documentation]    Clicks on an element using the specified selector with optional context name for better error messages
@@ -214,9 +215,6 @@ Select Random Dropdown Option
     EXCEPT    AS    ${err}
         Take Screenshot
         VAR    ${msg}    Failed when, '${context_name}'  --> | locator='${locator}' | ERROR: ${err}
-
-
-
     END
 
 
