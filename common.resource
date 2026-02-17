@@ -89,6 +89,14 @@ Log Verification
 
 # === WAIT KEYWORDS ===
 
+Wait Element Ready
+    [Documentation]    Waits for element to be ready for interaction.
+    ...                Checks states in order: attached, visible, enabled, stable.
+    ...                Use this before any element interaction.
+    [Arguments]    ${locator}
+    FOR    ${state}    IN    attached    visible    enabled    stable
+        Wait For Elements State    ${locator}    ${state}    ${TIMEOUT}
+    END
 
 # === CORE KEYWORDS ===
 
@@ -124,10 +132,7 @@ Click Element
     [Documentation]    Clicks on an element using the specified selector with optional context name for better error messages
     [Arguments]    ${selector}    ${context_name}=${EMPTY}
     TRY
-        Wait For Elements State    ${selector}    attached       ${TIMEOUT}
-        Wait For Elements State    ${selector}    visible        ${TIMEOUT}
-        Wait For Elements State    ${selector}    enabled        ${TIMEOUT}
-        Wait For Elements State    ${selector}    stable         ${TIMEOUT}
+        Wait Element Ready    ${selector}
         Click    ${selector}
     EXCEPT    AS    ${err}
         Take Screenshot
@@ -139,10 +144,7 @@ Fill Field
     [Documentation]    Fills the specified text into a field using the given locator with optional context name for better error messages
     [Arguments]    ${locator}    ${text}    ${context_name}=${EMPTY}
     TRY
-        Wait For Elements State    ${locator}    attached       ${TIMEOUT}
-        Wait For Elements State    ${locator}    visible        ${TIMEOUT}
-        Wait For Elements State    ${locator}    enabled        ${TIMEOUT}
-        Wait For Elements State    ${locator}    stable         ${TIMEOUT}
+        Wait Element Ready    ${locator}
         Click    ${locator}
         #Clear Text    ${locator}
         Fill Text    ${locator}    ${text}
@@ -157,10 +159,7 @@ Get Element Text
     [Arguments]    ${locator}    ${context_name}=${EMPTY}
     VAR    ${text}    ${EMPTY}
     TRY
-        Wait For Elements State    ${locator}    attached       ${TIMEOUT}
-        Wait For Elements State    ${locator}    visible        ${TIMEOUT}
-        Wait For Elements State    ${locator}    enabled        ${TIMEOUT}
-        Wait For Elements State    ${locator}    stable         ${TIMEOUT}
+        Wait Element Ready    ${locator}
         ${text}=    browser.Get Text    ${locator}
     EXCEPT    AS    ${err}
         Take Screenshot
@@ -173,10 +172,7 @@ Verify Element Visible
     [Documentation]    Verifies that an element is present and visible on the page using the specified locator with optional context name for better error messages
     [Arguments]    ${locator}    ${context_name}=${EMPTY}
     TRY
-        Wait For Elements State    ${locator}    attached       ${TIMEOUT}
-        Wait For Elements State    ${locator}    visible        ${TIMEOUT}
-        Wait For Elements State    ${locator}    enabled        ${TIMEOUT}
-        Wait For Elements State    ${locator}    stable         ${TIMEOUT}
+        Wait Element Ready    ${locator}
     EXCEPT    AS    ${err}
         Take Screenshot
         VAR    ${msg}    Failed '${context_name}' --> | locator='${locator}' | ERROR: ${err}
@@ -187,10 +183,7 @@ Append To Field
     [Documentation]    Appends text to a field without clearing existing content using the specified locator with optional context name for better error messages
     [Arguments]    ${locator}    ${text}    ${context_name}=${EMPTY}
     TRY
-        Wait For Elements State    ${locator}    attached       ${TIMEOUT}
-        Wait For Elements State    ${locator}    visible        ${TIMEOUT}
-        Wait For Elements State    ${locator}    enabled        ${TIMEOUT}
-        Wait For Elements State    ${locator}    stable         ${TIMEOUT}
+        Wait Element Ready    ${locator}
         Click    ${locator}
         Fill Text    ${locator}    ${text}
     EXCEPT    AS    ${err}
@@ -203,10 +196,7 @@ Select Random Dropdown Option
     [Documentation]    Opens dropdown and randomly selects a car type
     [Arguments]    ${locator}    ${context_name}=${EMPTY}
     TRY
-        Wait For Elements State    ${locator}    attached       ${TIMEOUT}
-        Wait For Elements State    ${locator}    visible        ${TIMEOUT}
-        Wait For Elements State    ${locator}    enabled        ${TIMEOUT}
-        Wait For Elements State    ${locator}    stable         ${TIMEOUT}
+        Wait Element Ready    ${locator}
         ${options}=    Get Select Options    ${JOURNEYS_FORM_REQUEST_CAR_TYPE_DROPDOWN}
         @{labels}=    Evaluate    [o['label'] for o in ${options}]
         ${choice}=    Evaluate    random.choice(${labels})    modules=random
@@ -234,9 +224,7 @@ Select From Dropdown
     ...                Attribute: text (default), value, index, label
     [Arguments]    ${locator}    ${value}    ${attribute}=text    ${context_name}=${EMPTY}
     TRY
-        Wait For Elements State    ${locator}    attached    ${TIMEOUT}
-        Wait For Elements State    ${locator}    visible     ${TIMEOUT}
-        Wait For Elements State    ${locator}    enabled     ${TIMEOUT}
+        Wait Element Ready    ${locator}
         Select Options By    ${locator}    ${attribute}    ${value}
     EXCEPT    AS    ${err}
         Take Screenshot
@@ -276,9 +264,7 @@ Select Random Dropdown Value
     ...                Usage: ${selected}=    Select Random Dropdown Value    ${locator}
     [Arguments]    ${locator}    ${attribute}    ${skip_first}    ${context_name}=${EMPTY}
     TRY
-        Wait For Elements State    ${locator}    attached    ${TIMEOUT}
-        Wait For Elements State    ${locator}    visible     ${TIMEOUT}
-        Wait For Elements State    ${locator}    enabled     ${TIMEOUT}
+        Wait Element Ready    ${locator}
 
         # Get all options from dropdown
           ${options}=    Get Select Options    ${locator}
