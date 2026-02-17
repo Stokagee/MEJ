@@ -87,6 +87,22 @@ Log Verification
     [Arguments]    ${what_is_verified}    ${result}=OK
     Log    \n---> Verified: ${what_is_verified} [${result}]    console=${LOG_TO_CONSOLE}
 
+# === WAIT KEYWORDS ===
+
+Wait Element State
+    [Documentation]    Waits for element to reach specified state with error handling.
+    ...                Use for: waiting for elements to be visible, enabled, attached, stable, or hidden.
+    ...                States: visible (default), enabled, attached, stable, hidden
+    ...                Example: Wait Element State    ${LOCATOR}    visible    ${TIMEOUT}    Filter panel
+    [Arguments]    ${selector}    ${state}=visible    ${timeout}=${TIMEOUT}    ${context_name}=${EMPTY}
+    TRY
+        Wait For Elements State    ${selector}    ${state}    timeout=${timeout}
+    EXCEPT    AS    ${err}
+        Take Screenshot
+        VAR    ${msg}    Failed waiting for element '${context_name}' --> | selector='${selector}' | state='${state}' | ERROR: ${err}
+        Fail    ${msg}
+    END
+
 # === CORE KEYWORDS ===
 
 Initialize Browser Session
