@@ -221,41 +221,6 @@ Click Welcome Message Sent
     Log Action    Clicking Welcome Message Sent
     Click Element    ${JOURNEYS_FORM_REQUEST_WM_SENT_BUTTON}    clicking WM sent
 
-Open Driver Selection Tab
-    [Documentation]    Clicks driver selection to navigate to tab for requesting drivers
-    Log Action    Opening Driver Selection tab
-    Click Element    ${JOURNEYS_DRIVER_SELECTION_TAB_BUTTON}    navigating to driver selection tab
-
-Click Search Drivers
-    [Documentation]    Clicks search button to display list of drivers
-    Log Action    Clicking Search Drivers
-    Click Element    ${JOURNEYS_DRIVER_SELECTION_SEARCH_BUTTON}    clicking search button to find drivers
-
-Select MrMPVDriver
-    [Documentation]    Finds Mr. Mpv and checks the checkbox
-    Log Action    Selecting Mr. MPV driver
-    Click Element    ${JOURNEYS_DRIVER_SELECTION_DRVIER_CHECKBOX}    checking Mr. Mpv
-
-Select Shuttle Company
-    [Documentation]    Finds shuttle company and checks the checkbox
-    Log Action    Selecting Shuttle Company
-    Click Element    ${JOURNEYS_DRIVER_SELECTION_SHUTTLE_COMPANY_CHECKBOX}    checking shuttle company
-
-Click Request Now
-    [Documentation]    Clicks request now to immediately send request to all selected drivers
-    Log Action    Clicking Request Now
-    Click Element    ${JOURNEYS_DRIVER_SELECTION_REQUEST_NOW_BUTTON}    sending request to all at once
-
-Open Driver Assignment Tab
-    [Documentation]    Clicks driver assignment tab
-    Log Action    Opening Driver Assignment tab
-    Click Element    ${JOURNEYS_DRIVER_ASSIGNMENT_TAB_BUTTON}    navigating to driver assignment tab
-
-Assign MPVDriver
-    [Documentation]    Clicks Assign to assign Mr. Mpv driver
-    Log Action    Assigning MPV driver
-    Click Element    ${JOURNEYS_DRIVER_ASSIGNMENT_TAB_MPV_BUTTON}    assigning MPV driver
-
 Check Issue Checkbox
     [Documentation]    Checks issue checkbox in left form section, shows (!) icon on that order
     Log Action    Checking Issue checkbox

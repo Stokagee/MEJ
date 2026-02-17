@@ -17,8 +17,6 @@ Resource    resources/operators/page/main_page.resource
 Resource    resources/operators/locators/journeys/journeys_locators.resource
 Resource    resources/operators/locators/validation_locators.resource
 Resource    resources/operators/page/journeys_page.resource
-Resource    resources/operators/locators/journeys/driver_selection_locators.resource
-Resource    resources/operators/locators/journeys/driver_assignment.resource
 Resource    resources/operators/workflows/journey.resource
 Resource    resources/operators/locators/packages/candidate_locators.resource
 Resource    resources/operators/workflows/packages.resource
@@ -47,7 +45,6 @@ Resource    resources/drivers/locators/tour_routes_locators.resource
 #*** Company ***
 Resource    resources/company/locators/main_locators.resource
 Resource    resources/company/page/main_page.resource
-Resource    resources/company/locators/requested_trips.resource
 Resource    resources/company/page/requsted_trips.resource
 Resource    resources/company/locators/requsted_packages.resource
 Resource    resources/company/page/requested_packages.resource

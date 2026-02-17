@@ -20,11 +20,6 @@ Verify Company Login Success
     Verify Element Visible    ${COMPANY_MAIN_REQUESTED_TRIPS_BUTTON}
     Log Verification    Company login successful
 
-Navigate To Requested Trips Page As Company
-    [Documentation]    Clicks to navigate to Requested trips page
-    Log Action    Navigating to Requested Trips page as Company
-    Click Element    ${COMPANY_MAIN_REQUESTED_TRIPS_BUTTON}
-
 Navigate To Requested Packages Page As Company
     [Documentation]    Clicks to navigate to Requested Packages page
     Log Action    Navigating to Requested Packages page as Company
