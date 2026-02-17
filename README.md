@@ -64,9 +64,9 @@ MEJ/
 │   ├── operators/         # Operator role
 │   └── libraries/         # Python knihovny
 └── tests/                 # Testovací soubory
-    ├── Negative/          # Negativní testy
-    ├── Operator/          # Operátor testy
-    └── Valid_content/     # Validační testy
+    ├── negative/          # Negativní testy
+    ├── operator/          # Operátor testy
+    └── valid_content/     # Validační testy
 ```
 
 ## Environment proměnné
