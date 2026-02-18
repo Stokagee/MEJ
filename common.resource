@@ -57,6 +57,9 @@ Resource    resources/register/workflows/driver_registration.resource
 Resource    resources/register/locators/shuttle_locators.resource
 Resource    resources/register/page/shuttle_page.resource
 Resource    resources/register/workflows/shuttle_registration.resource
+Resource    resources/register/locators/travel_agency_locators.resource
+Resource    resources/register/page/travel_agency_page.resource
+Resource    resources/register/workflows/travel_agency_registration.resource
 
 *** Keywords ***
 
