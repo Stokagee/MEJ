@@ -37,7 +37,7 @@ Resource    resources/drivers/page/main_page.resource
 Resource    resources/drivers/locators/main_locators.resource
 Resource    resources/drivers/locators/requested_trips_locators.resource
 Resource    resources/drivers/page/requested_trips_page.resource
-Resource    resources/drivers/locators/confirmed_trips.resource
+#Resource    resources/drivers/locators/confirmed_trips.resource
 Resource    resources/drivers/locators/requested_packages_locators.resource
 Resource    resources/drivers/page/requested_packages_page.resource
 Resource    resources/drivers/page/tour_routes_page.resource
@@ -48,6 +48,9 @@ Resource    resources/company/page/main_page.resource
 Resource    resources/company/page/requsted_trips.resource
 Resource    resources/company/locators/requsted_packages.resource
 Resource    resources/company/page/requested_packages.resource
+#*** Register ***
+Resource    resources/register/locators/main_page_locators.resource
+Resource    resources/register/locators/driver_locators.resource
 
 *** Keywords ***
 
