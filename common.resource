@@ -8,6 +8,7 @@ Library    RequestsLibrary
 Library    DatabaseLibrary
 #Library    DebugLibrary
 Library    resources/libraries/address_generator.py
+Library    resources/python_skripts.py
 Resource    login_locators.resource
 Resource    global_variables.resource
 Resource    login_page.resource
@@ -51,6 +52,8 @@ Resource    resources/company/page/requested_packages.resource
 #*** Register ***
 Resource    resources/register/locators/main_page_locators.resource
 Resource    resources/register/locators/driver_locators.resource
+Resource    resources/register/page/driver_page.resource
+Resource    resources/register/workflows/driver_registration.resource
 
 *** Keywords ***
 

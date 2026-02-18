@@ -62,11 +62,17 @@ MEJ/
 │   ├── company/           # Company role
 │   ├── drivers/           # Driver role
 │   ├── operators/         # Operator role
-│   └── libraries/         # Python knihovny
+│   ├── register/          # Registrace nových entit
+│   │   ├── locators/      # Lokátory pro registraci
+│   │   └── page/          # Page objects pro registraci
+│   ├── libraries/         # Python knihovny
+│   └── python_skripts.py  # Pomocné Python funkce
 └── tests/                 # Testovací soubory
     ├── operators/         # Operátor testy
     │   ├── negative_content/  # Negativní testy
     │   └── valid_content/     # Validační testy
+    ├── registers/         # Registrační testy
+    │   └── driver_registration.robot  # Registrace řidiče
     ├── tour_route.robot   # E2E test tras
     └── package.robot      # E2E test balíčků
 ```
@@ -104,4 +110,22 @@ robot tests/tour_route.robot
 - `positive` - Pozitivní scénáře
 - `negative` - Negativní scénáře
 - `p1` - Kritická priorita
+- `register` - Registrační testy
 - `wip` - Work in progress (vyloučit z CI)
+
+## Python pomocné funkce
+
+V souboru `resources/python_skripts.py` jsou dostupné funkce pro generování testovacích dat:
+
+| Funkce | Popis |
+|--------|-------|
+| `generate_ico()` | Generuje české IČO (8-místné číslo) |
+| `generate_vat_number(country_code)` | Generuje DIČ pro zadanou zemi |
+| `generate_valid_czech_iban()` | Generuje validní český IBAN |
+
+Použití v Robot Framework:
+```robotframework
+${ico}=    generate_ico
+${vat}=    generate_vat_number    CZ
+${iban}=    generate_valid_czech_iban
+```
