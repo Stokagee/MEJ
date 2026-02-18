@@ -54,6 +54,9 @@ Resource    resources/register/locators/main_page_locators.resource
 Resource    resources/register/locators/driver_locators.resource
 Resource    resources/register/page/driver_page.resource
 Resource    resources/register/workflows/driver_registration.resource
+Resource    resources/register/locators/shuttle_locators.resource
+Resource    resources/register/page/shuttle_page.resource
+Resource    resources/register/workflows/shuttle_registration.resource
 
 *** Keywords ***
 
