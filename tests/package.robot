@@ -70,3 +70,10 @@ Create Package Candidate With Multiple Journeys And Add First Journey By Order I
     ...    ${DRIVER_EMAIL}
     ...    ${DRIVER_PASSWORD}
     ...    ${driver_bid_price}
+
+    # 7. Admin assigns carrier (random selection)
+    ${assigned_carrier}=    Switch To Admin Browser And Assign Carrier
+    ...    ${admin_browser}
+    ...    ${admin_context}
+
+    Log    \n---> Package workflow completed. Assigned carrier: ${assigned_carrier}    console=${LOG_TO_CONSOLE}

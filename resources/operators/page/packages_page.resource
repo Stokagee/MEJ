@@ -126,7 +126,7 @@ Open Edit For Package By Name
         EXCEPT    AS    ${err}
             Log    \n---> Attempt ${attempts}: Package '${package_name}' not found, refreshing page...    console=${LOG_TO_CONSOLE}
             Sleep    2
-            Refresh Page
+            Reload
             Sleep    2
             IF    ${attempts} >= 5
                 Take Screenshot
@@ -161,3 +161,38 @@ Click Request Now In Packages
     [Documentation]    Clicks Request Now button in packages
     Log Action    Clicking Request Now in packages
     Click Element    ${PACKAGES_DRIVER_SELECTION_REQUEST_NOW_BUTTON}    clicking Request Now button in packages
+
+# === Driver Assignment Tab ===
+
+Navigate To Driver Assignment Tab In Packages
+    [Documentation]    Navigates to Driver Assignment tab in packages
+    Log Action    Navigating to Driver Assignment tab in packages
+    Click Element    ${PACKAGES_DRIVER_ASSIGNMENT_TAB_BUTTON}    navigating to Driver Assignment tab in packages
+
+Get Carrier Name From Assignment Row
+    [Documentation]    Gets the carrier name from the assignment table row.
+    ...                Returns the name text from the link element.
+    [Arguments]    ${row_index}
+    IF    ${row_index} == 0
+        ${name}=    Get Element Text    ${PACKAGES_CARRIER_ASSIGNMENT_NAME_LINK_ROW_0}    getting carrier name from row 0
+    ELSE
+        ${name}=    Get Element Text    ${PACKAGES_CARRIER_ASSIGNMENT_NAME_LINK_ROW_1}    getting carrier name from row 1
+    END
+    Log Data    Carrier name from row ${row_index}    ${name}
+    RETURN    ${name}
+
+Click Assign Button For Carrier
+    [Documentation]    Clicks the Assign button for the specified carrier row.
+    ...                row_index: 0 or 1
+    [Arguments]    ${row_index}
+    Log Action    Clicking Assign button for carrier at row ${row_index}
+    IF    ${row_index} == 0
+        Click Element    ${PACKAGES_CARRIER_ASSIGNMENT_ASSIGN_BUTTON_0}    clicking Assign button for row 0
+    ELSE
+        Click Element    ${PACKAGES_CARRIER_ASSIGNMENT_ASSIGN_BUTTON_1}    clicking Assign button for row 1
+    END
+
+Click Confirm Button For Carrier Assignment
+    [Documentation]    Clicks the Confirm button for the carrier assignment
+    Log Action    Clicking Confirm button for carrier assignment
+    Click Element    ${PACKAGES_CARRIER_ASSIGNMENT_CONFIRM_BUTTON_0}    clicking Confirm button for carrier assignment

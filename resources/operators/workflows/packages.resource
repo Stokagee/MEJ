@@ -138,4 +138,55 @@ Complete Package Workflow With Company And Driver
     ...    Open New Browser Session As Driver    ${driver_email}    ${driver_password}
     Navigate To Driver Requested Packages Page
     Check BID Checkbox And Confirm All Packages    ${driver_bid_price}
-    Sleep    5s
+
+Switch To Admin Browser And Assign Carrier
+    [Documentation]    Switches back to admin browser session and performs carrier assignment.
+    ...                Steps:
+    ...                1. Switch to admin browser/context and last active page
+    ...                2. Navigate to Driver Assignment tab
+    ...                3. Randomly select row 0 or 1
+    ...                4. Get and log carrier name
+    ...                5. Click Assign button
+    ...                6. Wait for Confirm button and click it
+    ...                7. Wait for Remove button (verification of success)
+    ...                8. Log final success message with carrier name
+    [Arguments]    ${admin_browser}    ${admin_context}
+    Log Workflow Start    Switch to Admin and Assign Carrier
+
+    # 1. Switch back to admin browser session and get last active page
+    Log Action    Switching back to Admin browser session
+    Switch Browser    ${admin_browser}
+    Switch Context    ${admin_context}
+    ${page_ids}=    Get Page Ids    ACTIVE
+    ${last_page}=    Get From List    ${page_ids}    -1
+    Switch Page    ${last_page}
+    Sleep    2s
+
+    # 2. Navigate to Driver Assignment tab
+    Navigate To Driver Assignment Tab In Packages
+
+    # 3. Randomly select row 0 or 1
+    ${row_index}=    Evaluate    random.randint(0, 1)    modules=random
+    Log Data    Randomly selected row index    ${row_index}
+
+    # 4. Get and log carrier name
+    ${carrier_name}=    Get Carrier Name From Assignment Row    ${row_index}
+    Log Data    Selected carrier for assignment    ${carrier_name}
+
+    # 5. Click Assign button
+    Click Assign Button For Carrier    ${row_index}
+
+    # 6. Wait for Confirm button and click it
+    Log Action    Waiting for Confirm button to appear
+    Wait Element Ready    ${PACKAGES_CARRIER_ASSIGNMENT_CONFIRM_BUTTON_0}
+    Click Confirm Button For Carrier Assignment
+
+    # 7. Wait for Remove button (verification of success)
+    Log Action    Waiting for Remove button (verification of successful assignment)
+    Wait Element Ready    ${PACKAGES_CARRIER_ASSIGNMENT_REMOVE_BUTTON_0}
+
+    # 8. Log final success message
+    Log    \n---> SUCCESS: Carrier '${carrier_name}' assigned and confirmed successfully!    console=${LOG_TO_CONSOLE}
+
+    Log Workflow End    Switch to Admin and Assign Carrier
+    RETURN    ${carrier_name}
