@@ -47,6 +47,16 @@ class StringLibrary:
         return sep.join(items)
 
 
+def generate_ico():
+    """
+    Generates a Czech IČO (Business Identification Number).
+    IČO je 8-místné číslo generované náhodně.
+    """
+    logger.info("\n---> Generating IČO")
+    ico = f"{random.randint(10000000, 99999999)}"
+    logger.info(f"\n---> Generated IČO: {ico}")
+    return ico
+
 def generate_vat_number(country_code="CZ"):
     """
     Generates a VAT number for the specified country.

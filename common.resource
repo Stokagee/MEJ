@@ -8,6 +8,7 @@ Library    RequestsLibrary
 Library    DatabaseLibrary
 #Library    DebugLibrary
 Library    resources/libraries/address_generator.py
+Library    resources/python_skripts.py
 Resource    login_locators.resource
 Resource    global_variables.resource
 Resource    login_page.resource
@@ -37,7 +38,7 @@ Resource    resources/drivers/page/main_page.resource
 Resource    resources/drivers/locators/main_locators.resource
 Resource    resources/drivers/locators/requested_trips_locators.resource
 Resource    resources/drivers/page/requested_trips_page.resource
-Resource    resources/drivers/locators/confirmed_trips.resource
+#Resource    resources/drivers/locators/confirmed_trips.resource
 Resource    resources/drivers/locators/requested_packages_locators.resource
 Resource    resources/drivers/page/requested_packages_page.resource
 Resource    resources/drivers/page/tour_routes_page.resource
@@ -48,6 +49,19 @@ Resource    resources/company/page/main_page.resource
 Resource    resources/company/page/requsted_trips.resource
 Resource    resources/company/locators/requsted_packages.resource
 Resource    resources/company/page/requested_packages.resource
+#*** Register ***
+Resource    resources/register/locators/main_page_locators.resource
+Resource    resources/register/locators/driver_locators.resource
+Resource    resources/register/page/driver_page.resource
+Resource    resources/register/workflows/driver_registration.resource
+Resource    resources/register/locators/shuttle_locators.resource
+Resource    resources/register/page/shuttle_page.resource
+Resource    resources/register/workflows/shuttle_registration.resource
+Resource    resources/register/locators/travel_agency_locators.resource
+Resource    resources/register/page/travel_agency_page.resource
+Resource    resources/register/workflows/travel_agency_registration.resource
+Resource    resources/register/page/validation_page.resource
+Resource    resources/register/locators/validation_locators.resource
 
 *** Keywords ***
 
