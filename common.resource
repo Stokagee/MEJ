@@ -60,6 +60,8 @@ Resource    resources/register/workflows/shuttle_registration.resource
 Resource    resources/register/locators/travel_agency_locators.resource
 Resource    resources/register/page/travel_agency_page.resource
 Resource    resources/register/workflows/travel_agency_registration.resource
+Resource    resources/register/page/validation_page.resource
+Resource    resources/register/locators/validation_locators.resource
 
 *** Keywords ***
 

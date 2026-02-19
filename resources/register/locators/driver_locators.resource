@@ -11,13 +11,12 @@ ${FIRST_PAGE_REGISTER_DRIVER_TERMS_OF_USE_CHECKBOX}                //input[@type
 ${FIRST_PAGE_REGISTER_DRIVER_NEXT_BUTTON}                          [class="x-btn x-btn-primary"]
 
 # *** Second page ***
-# Lokátory pro select elementy - používáme nth pro výběr konkrétního dropdownu
-# Pořadí: 0=Native Language, 1=Dial (prázdný po výběru), 2=Level of English, 3=Driving Experience
-${SECOND_PAGE_REGISTER_DRIVER_LANGUAGE_DROPDOWN}                   css=select >> nth=0
-${SECOND_PAGE_REGISTER_DRIVER_LEVEL_OF_ENGLISH_DROPDOWN}           css=select >> nth=2
+# Lokátory pro select elementy - používáme label-based selektory
+${SECOND_PAGE_REGISTER_DRIVER_LANGUAGE_DROPDOWN}                   xpath=//label[contains(text(), "Native language")]/..//select
+${SECOND_PAGE_REGISTER_DRIVER_LEVEL_OF_ENGLISH_DROPDOWN}           xpath=//label[contains(text(), "Level")]/..//select
 ${SECOND_PAGE_REGISTER_DRIVER_ADD_NEW_LANGUAGE_BUTTON}             [class="x-btn x-btn-secondary"]
 ${SECOND_PAGE_REGISTER_DRIVER_ANOTHER_LANGUAGE_DROPDOWN}           //*[contains(text(), "Additional language")]/..//select
-${SECOND_PAGE_REGISTER_DRIVER_DRIVING_EXPERIENCE_DROPDOWN}         css=select >> nth=3
+${SECOND_PAGE_REGISTER_DRIVER_DRIVING_EXPERIENCE_DROPDOWN}         xpath=//label[contains(text(), "Years of Driving Experience")]/..//select
 ${SECOND_PAGE_REGISTER_DRIVER_ABOUT_ME_INPUT}                      [name="Model.AboutMe"]
 ${SECOND_PAGE_REGISTER_DRIVER_NEXT_BUTTON}                         css=button.x-btn-primary:has-text("Next")
 
