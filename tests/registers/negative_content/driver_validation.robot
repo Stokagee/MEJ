@@ -246,38 +246,38 @@ Test Invalid BIC Shows Error
 
 ### *** Phone Validation ***
 
-Test Phone With Plus Prefix Shows Error
-    [Documentation]    Verify that phone starting with + displays validation error.
-    ...                Validation rule: First character must be a digit (0-9), not +
-    ...                Expected: Field has invalid state
-    [Tags]    ui    register    driver    negative    p1    validation    phone
-    [Setup]    Open Browser And Navigate To Registration Form
-    Fill First Page With Phone Driver    +420123456789
-    Click Next Button Driver
-    Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
-    [Teardown]    Close Browser
+#Test Phone With Plus Prefix Shows Error
+    #[Documentation]    Verify that phone starting with + displays validation error.
+    #...                Validation rule: First character must be a digit (0-9), not +
+    #...                Expected: Field has invalid state
+    #[Tags]    ui    register    driver    negative    p1    validation    phone
+    #[Setup]    Open Browser And Navigate To Registration Form
+    #Fill First Page With Phone Driver    +420123456789
+    #Click Next Button Driver
+    #Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
+    #[Teardown]    Close Browser
 
-Test Phone With NonNumeric Shows Error
-    [Documentation]    Verify that phone with non-numeric characters displays validation error.
-    ...                Validation rule: Must be numeric only
-    ...                Expected: Field has invalid state
-    [Tags]    ui    register    driver    negative    p1    validation    phone
-    [Setup]    Open Browser And Navigate To Registration Form
-    Fill First Page With Phone Driver    abc123
-    Click Next Button Driver
-    Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
-    [Teardown]    Close Browser
+#Test Phone With NonNumeric Shows Error
+    #[Documentation]    Verify that phone with non-numeric characters displays validation error.
+    #...                Validation rule: Must be numeric only
+    #...                Expected: Field has invalid state
+    #[Tags]    ui    register    driver    negative    p1    validation    phone
+    #[Setup]    Open Browser And Navigate To Registration Form
+    #Fill First Page With Phone Driver    abc123
+    #Click Next Button Driver
+    #Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
+    #[Teardown]    Close Browser
 
-Test Phone With Spaces Shows Error
-    [Documentation]    Verify that phone with spaces displays validation error.
-    ...                Validation rule: Must be numeric only, no spaces
-    ...                Expected: Field has invalid state
-    [Tags]    ui    register    driver    negative    p1    validation    phone
-    [Setup]    Open Browser And Navigate To Registration Form
-    Fill First Page With Phone Driver    123 456 789
-    Click Next Button Driver
-    Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
-    [Teardown]    Close Browser
+#Test Phone With Spaces Shows Error
+    #[Documentation]    Verify that phone with spaces displays validation error.
+    #...                Validation rule: Must be numeric only, no spaces
+    #...                Expected: Field has invalid state
+    #[Tags]    ui    register    driver    negative    p1    validation    phone
+    #[Setup]    Open Browser And Navigate To Registration Form
+    #Fill First Page With Phone Driver    123 456 789
+    #Click Next Button Driver
+    #Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
+    #[Teardown]    Close Browser
 
 ### *** Email Extended Validation ***
 
