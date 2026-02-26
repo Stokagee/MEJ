@@ -243,3 +243,197 @@ Test Invalid BIC Shows Error
     Click Finish Button Driver
     Verify Register Validation Error Is Visible    ${REGISTER_BIC_VALIDATION}    ${MSG_BIC_INVALID}
     [Teardown]    Close Browser
+
+### *** Phone Validation ***
+
+Test Phone With Plus Prefix Shows Error
+    [Documentation]    Verify that phone starting with + displays validation error.
+    ...                Validation rule: First character must be a digit (0-9), not +
+    ...                Expected: Field has invalid state
+    [Tags]    ui    register    driver    negative    p1    validation    phone
+    [Setup]    Open Browser And Navigate To Registration Form
+    Fill First Page With Phone Driver    +420123456789
+    Click Next Button Driver
+    Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
+    [Teardown]    Close Browser
+
+Test Phone With NonNumeric Shows Error
+    [Documentation]    Verify that phone with non-numeric characters displays validation error.
+    ...                Validation rule: Must be numeric only
+    ...                Expected: Field has invalid state
+    [Tags]    ui    register    driver    negative    p1    validation    phone
+    [Setup]    Open Browser And Navigate To Registration Form
+    Fill First Page With Phone Driver    abc123
+    Click Next Button Driver
+    Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
+    [Teardown]    Close Browser
+
+Test Phone With Spaces Shows Error
+    [Documentation]    Verify that phone with spaces displays validation error.
+    ...                Validation rule: Must be numeric only, no spaces
+    ...                Expected: Field has invalid state
+    [Tags]    ui    register    driver    negative    p1    validation    phone
+    [Setup]    Open Browser And Navigate To Registration Form
+    Fill First Page With Phone Driver    123 456 789
+    Click Next Button Driver
+    Verify Register Field Has Invalid State    ${REGISTER_PHONE_INVALID_STATE}
+    [Teardown]    Close Browser
+
+### *** Email Extended Validation ***
+
+Test Email No TLD Dot Shows Error
+    [Documentation]    Verify that email without TLD dot displays validation error.
+    ...                Validation rule: Domain must contain dot
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test@domain
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email TLD Too Short Shows Error
+    [Documentation]    Verify that email with TLD < 2 chars displays validation error.
+    ...                Validation rule: TLD must be at least 2 characters
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test@domain.c
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email Leading Dot Shows Error
+    [Documentation]    Verify that email with leading dot displays validation error.
+    ...                Validation rule: Local part cannot start with dot
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    .test@domain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email Trailing Dot In Local Shows Error
+    [Documentation]    Verify that email with trailing dot in local part displays validation error.
+    ...                Validation rule: Local part cannot end with dot
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test.@domain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email Consecutive Dots Shows Error
+    [Documentation]    Verify that email with consecutive dots displays validation error.
+    ...                Validation rule: No consecutive dots allowed
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test..test@domain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email Consecutive Dots In Domain Shows Error
+    [Documentation]    Verify that email with consecutive dots in domain displays validation error.
+    ...                Validation rule: No consecutive dots in domain
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test@domain..com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email Trailing Dot In Domain Shows Error
+    [Documentation]    Verify that email with trailing dot in domain displays validation error.
+    ...                Validation rule: Domain cannot end with dot
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test@domain.com.
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email Hyphen After At Shows Error
+    [Documentation]    Verify that email with hyphen right after @ displays validation error.
+    ...                Validation rule: No hyphen immediately after @
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test@-domain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email Consecutive Hyphens Shows Error
+    [Documentation]    Verify that email with consecutive hyphens displays validation error.
+    ...                Validation rule: No consecutive hyphens in domain
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test@dom--ain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email With Space Shows Error
+    [Documentation]    Verify that email with space displays validation error.
+    ...                Validation rule: No whitespace allowed
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test email@domain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email With Exclamation Shows Error
+    [Documentation]    Verify that email with ! character displays validation error.
+    ...                Validation rule: Forbidden characters (!, #, /)
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test!email@domain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email With Hash Shows Error
+    [Documentation]    Verify that email with # character displays validation error.
+    ...                Validation rule: Forbidden characters (!, #, /)
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test#email@domain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+Test Email With Slash Shows Error
+    [Documentation]    Verify that email with / character displays validation error.
+    ...                Validation rule: Forbidden characters (!, #, /)
+    ...                Expected message: "Invalid email address"
+    [Tags]    ui    register    driver    negative    p1    validation    email
+    [Setup]    Open Browser And Navigate To Registration Form
+    Clear And Fill Registration Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    test/email@domain.com
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_EMAIL_VALIDATION}    ${MSG_EMAIL_INVALID}
+    [Teardown]    Close Browser
+
+### *** Password Missing Digit Validation ***
+
+Test Password Without Digit Shows Error
+    [Documentation]    Verify that password without digit displays validation error.
+    ...                Validation rule: Requires at least one digit ('0'-'9')
+    ...                Expected message: "Passwords must have at least one digit ('0'-'9')."
+    [Tags]    ui    register    driver    negative    p1    validation    password
+    [Setup]    Open Browser And Navigate To Registration Form
+    ${PASSWORD_NO_DIGIT}=    Set Variable    Abcdefg!
+    Fill First Page With Password Driver    ${PASSWORD_NO_DIGIT}    ${PASSWORD_NO_DIGIT}
+    Click Next Button Driver
+    Verify Register Validation Error Is Visible    ${REGISTER_PASSWORD_VALIDATION}    ${MSG_PASSWORD_NO_DIGIT}
+    [Teardown]    Close Browser

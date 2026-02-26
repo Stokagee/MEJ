@@ -150,8 +150,8 @@ Verify Register Validation Error Is Visible
         Fail    Validation error was not displayed for ${validation_locator}: ${err}
     END
 
-Verify Field Has Invalid State
-    [Documentation]    Verifies that field has is-invalid class (Blazorise pattern)
+Verify Register Field Has Invalid State
+    [Documentation]    Verifies that registration field has is-invalid class (Blazorise pattern)
     [Arguments]    ${field_locator}
     Wait Element State    ${field_locator}
     ${classes}=    Get Attribute    ${field_locator}    class
@@ -223,6 +223,27 @@ Fill First Page With Password Driver
     ${checkbox}=    Get Element    ${FIRST_PAGE_REGISTER_DRIVER_TERMS_OF_USE_CHECKBOX}
     Click    ${checkbox}
 
+Fill First Page With Phone Driver
+    [Documentation]    Fills first page with custom phone for Driver validation tests
+    ...                Blazor validation requires complete form, but terms unchecked prevents navigation
+    [Arguments]    ${phone_value}
+    ${first_name}=    FakerLibrary.First Name
+    ${last_name}=    FakerLibrary.Last Name
+    ${email}=    FakerLibrary.Email
+    ${password}=    Set Variable    TestPassword1!
+    Log Data    First Name    ${first_name}
+    Log Data    Last Name    ${last_name}
+    Log Data    Email    ${email}
+    Log Data    Phone    ${phone_value}
+    Fill Field    ${FIRST_PAGE_REGISTER_DRIVER_NAME_INPUT}    ${first_name}    First name input
+    Fill Field    ${FIRST_PAGE_REGISTER_DRIVER_LAST_NAME_INPUT}    ${last_name}    Last name input
+    Select From Dropdown    ${FIRST_PAGE_REGISTER_DRIVER_DIAL_DROPDOWN}    +420    label    Dial dropdown
+    Fill Field    ${FIRST_PAGE_REGISTER_DRIVER_PHONE_INPUT}    ${phone_value}    Phone input
+    Fill Field    ${FIRST_PAGE_REGISTER_DRIVER_EMAIL_INPUT}    ${email}    Email input
+    Fill Field    ${FIRST_PAGE_REGISTER_DRIVER_PASSWORD_INPUT}    ${password}    Password input
+    Fill Field    ${FIRST_PAGE_REGISTER_DRIVER_CONFIRMED_PASSWORD_INPUT}    ${password}    Confirm password input
+    # Intentionally NOT clicking terms checkbox to prevent navigation
+
 Fill First Page With Password Shuttle
     [Documentation]    Fills first page with custom password for Shuttle validation tests
     ...                Blazor validation requires complete form before showing password errors
@@ -264,3 +285,38 @@ Fill First Page With Password Travel Agency
     Fill Text    ${FIRST_PAGE_REGISTER_TA_CONFIRMED_PASSWORD_INPUT}    ${confirmed_password}
     ${checkbox}=    Get Element    ${FIRST_PAGE_REGISTER_TA_TERMS_OF_USE_CHECKBOX}
     Click    ${checkbox}
+
+# === WHATSAPP VALIDATION WORKFLOW ===
+# These keywords are needed because WhatsApp validation has multiple states
+# and requires waiting for async response
+
+Verify WhatsApp Phone Required Message
+    [Documentation]    Verifies "Phone number must be filled in first" message appears
+    ...                Uses: Verify Element Visible (from common.resource)
+    Verify Element Visible    ${REGISTER_WHATSAPP_PHONE_REQUIRED_MESSAGE}    WhatsApp phone required message
+
+Verify WhatsApp Verified Message
+    [Documentation]    Verifies "WhatsApp verified" (green) message appears
+    Verify Element Visible    ${REGISTER_WHATSAPP_VERIFIED_MESSAGE}    WhatsApp verified message
+
+Verify WhatsApp Not Verified Message
+    [Documentation]    Verifies "WhatsApp not verified" (red) message appears
+    Verify Element Visible    ${REGISTER_WHATSAPP_NOT_VERIFIED_MESSAGE}    WhatsApp not verified message
+
+Verify WhatsApp Checkbox Unchecked
+    [Documentation]    Verifies checkbox is unchecked after failed validation
+    ${checked}=    Get Checkbox State    ${REGISTER_WHATSAPP_CHECKBOX}
+    Should Be Equal    ${checked}    ${FALSE}
+    Log Verification    WhatsApp checkbox is unchecked
+
+# === TYPE SELECTION PAGE KEYWORDS ===
+
+Verify Navigation To LoginPage
+    [Documentation]    Verifies navigation to /login page
+    ${url}=    Get Url
+    Should Contain    ${url}    /login
+    Log Verification    Navigated to login page
+
+Verify Still On Type Selection Page
+    [Documentation]    Verifies user stayed on type selection page (silent failure case)
+    Verify Element Visible    ${SIGN_UP_DRIVER_CHECKBOX}    Driver checkbox

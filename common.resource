@@ -180,6 +180,23 @@ Get Element Text
     END
     RETURN    ${text}
 
+Get Element Property
+    [Documentation]    Gets a property value from an element using the specified locator.
+    ...                Use for: getting input value, checkbox state, disabled state, etc.
+    ...                Properties: value, checked, disabled, readonly, etc.
+    ...                Example: ${value}=    Get Element Property    ${LOCATOR}    value    Input value
+    [Arguments]    ${locator}    ${property}    ${context_name}=${EMPTY}
+    VAR    ${value}    ${EMPTY}
+    TRY
+        Wait Element Ready    ${locator}
+        ${value}=    Get Property    ${locator}    ${property}
+    EXCEPT    AS    ${err}
+        Take Screenshot
+        VAR    ${msg}    Failed when getting property '${property}', '${context_name}' --> | locator='${locator}' | ERROR: ${err}
+        Fail    ${msg}
+    END
+    RETURN    ${value}
+
 Verify Element Visible
     [Documentation]    Verifies that an element is present and visible on the page using the specified locator with optional context name for better error messages
     [Arguments]    ${locator}    ${context_name}=${EMPTY}

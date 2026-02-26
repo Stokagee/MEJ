@@ -7,4 +7,8 @@ ${SIGN_UP_SHUTTLE_COMPANY_CHECKBOX}         css=label.form-check-label:has-text(
 ${SIGN_UP_HOTEL_CHECKBOX}                   css=label.form-check-label:has-text("Travel Agency/Hotel")
 ${SIGN_UP_SELECT_BUTTON}                    css=button.x-btn-primary:has-text("Select")
 
+# *** Tabs on Type Selection Page ***
+${SIGN_UP_LOGIN_TAB}                        css=.tab-button
+${SIGN_UP_SIGNUP_TAB_ACTIVE}                css=.tab-button-active
+
 
