@@ -22,6 +22,8 @@ services:
       - MEJ_DB_USER=${MEJ_DB_USER}
       - MEJ_DB_PASSWORD=${MEJ_DB_PASSWORD}
       - MEJ_LOG_TO_CONSOLE=${MEJ_LOG_TO_CONSOLE}
+      - MEJ_WHATSAPP_PHONE=${MEJ_WHATSAPP_PHONE}
+      - MEJ_WHATSAPP_DIAL_CODE=${MEJ_WHATSAPP_DIAL_CODE}
     volumes:
       # Mount results folder to access test reports
       - ./results:/app/results

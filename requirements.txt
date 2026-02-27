@@ -5,6 +5,7 @@ robotframework-faker>=5.0
 robotframework-databaselibrary>=1.4
 robotframework-requests>=0.9
 geopy>=2.4.1
+python-dotenv>=1.0.0
 
 # Discord notifications
 # requests>=2.28.0

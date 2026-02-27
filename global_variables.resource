@@ -52,3 +52,7 @@ ${DB_PORT}            %{MEJ_DB_PORT=}
 ${DB_USER}            %{MEJ_DB_USER=}
 ${DB_PASSWORD}        %{MEJ_DB_PASSWORD=}
 ${DB_CONN_STRING}     DRIVER={ODBC Driver 17 for SQL Server};SERVER=${DB_HOST},${DB_PORT};DATABASE=${DB_NAME};UID=${DB_USER};PWD=${DB_PASSWORD};TrustServerCertificate=yes
+
+# WhatsApp test data
+${WHATSAPP_PHONE}       %{MEJ_WHATSAPP_PHONE=}
+${WHATSAPP_DIAL_CODE}   %{MEJ_WHATSAPP_DIAL_CODE=+420}

@@ -69,6 +69,20 @@ Fill Driver Phone
     Log Data    Generated phone    ${phone}
     RETURN    ${phone}
 
+Select WhatsApp Dial Code
+    [Documentation]    Selects the WhatsApp dial code for verification tests.
+    ...                Uses global WhatsApp test data (MEJ_WHATSAPP_DIAL_CODE).
+    Log Action    Selecting WhatsApp dial code
+    Select From Dropdown    ${FIRST_PAGE_REGISTER_DRIVER_DIAL_DROPDOWN}    ${WHATSAPP_DIAL_CODE}    label    Dial code
+    Log Data    Selected WhatsApp dial code    ${WHATSAPP_DIAL_CODE}
+
+Fill Driver WhatsApp Phone
+    [Documentation]    Fills the driver's WhatsApp phone number for verification tests.
+    ...                Uses global WhatsApp test data (MEJ_WHATSAPP_PHONE).
+    Log Action    Filling WhatsApp phone number
+    Fill Field    ${FIRST_PAGE_REGISTER_DRIVER_PHONE_INPUT}    ${WHATSAPP_PHONE}    Phone input
+    Log Data    WhatsApp phone    ${WHATSAPP_PHONE}
+
 Fill Driver Email
     [Documentation]    Fills the driver's email address using FakerLibrary.
     ...

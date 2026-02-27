@@ -1,3 +1,7 @@
+# Load .env file into environment variables BEFORE any other imports
+from dotenv import load_dotenv
+load_dotenv()
+
 from faker import Faker
 from robot.api.deco import keyword
 from robot.api import logger
